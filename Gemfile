@@ -21,4 +21,11 @@ gem 'jquery-rails'
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'spork'
+  gem 'rb-fsevent'
+  gem 'guard-spork'
+  gem 'growl' # MacOSの場合は設定する。growl、glowlnotifyをインストールする必要あり。
+  gem 'annotate-models'
+  gem 'faker'
+  gem 'factory_girl_rails'
 end
