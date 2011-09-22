@@ -57,4 +57,7 @@ MuseumCreated::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  # Configuration for Devise in Production Environment
+  config.action_mailer.default_url_options = { :host => 'museum-created.heroku.com' }  
 end

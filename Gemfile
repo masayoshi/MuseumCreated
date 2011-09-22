@@ -2,6 +2,7 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
 gem 'sqlite3'
+gem 'devise'
 
 # For Heroku
 group :production do
@@ -25,7 +26,7 @@ group :development, :test do
   gem 'rb-fsevent'
   gem 'guard-spork'
   gem 'growl' # MacOSの場合は設定する。growl、glowlnotifyをインストールする必要あり。
-  gem 'annotate-models'
+  gem 'annotate'
   gem 'faker'
   gem 'factory_girl_rails'
 end
