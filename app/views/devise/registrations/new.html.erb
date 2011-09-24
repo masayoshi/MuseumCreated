@@ -1,18 +1,47 @@
-<h2>MuseumCreated.comに新規登録する</h2>
+<div class="page-header">
+  <h2>MuseumCreated.comに新規登録する</h2>    
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
+<div class="row">
+  <div class="span10">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+      <% if resource.errors.any? -%>
+        <div class="alert-message block-message error">
+          <h3><%= "#{resource.errors.count}つのエラーのため保存できませんでした。" %></h3>
+          <ul>
+            <% resource.errors.full_messages.each do |msg| -%>
+              <li><%= msg %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :email, 'メールアドレス' %>
+          <div class="input">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :password, 'パスワード' %>
+          <div class="input">
+            <%= f.password_field :password %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :password_confirmation, 'パスワード確認' %>
+          <div class="input">
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "登録", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span6">
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>
 
-  <div><%= f.label :email, 'メールアドレス' %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password, 'パスワード' %><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation, 'パスワード確認' %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.submit "登録" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>

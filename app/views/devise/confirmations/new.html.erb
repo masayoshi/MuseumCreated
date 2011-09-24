@@ -1,12 +1,33 @@
-<h2>アカウント登録確認メールの再送</h2>
-
-<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
-  <%= devise_error_messages! %>
-
-  <div><%= f.label :email, 'メールアドレス' %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.submit "アカウント登録確認メールの再送" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div class="page-header">
+  <h2>アカウント登録確認メールの再送</h2>    
+</div>
+<div class="row">
+  <div class="span10">
+    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+      <% if resource.errors.any? -%>
+        <div class="alert-message block-message error">
+          <h3><%= "#{resource.errors.count}つのエラーのため実行できませんでした。" %></h3>
+          <ul>
+            <% resource.errors.full_messages.each do |msg| -%>
+              <li><%= msg %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :email, 'メールアドレス' %>
+          <div class="input">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "アカウント登録確認メールの再送", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span6">
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>

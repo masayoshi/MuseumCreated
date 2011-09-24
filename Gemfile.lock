@@ -1,3 +1,11 @@
+GIT
+  remote: http://github.com/seyhunak/twitter-bootstrap-rails.git
+  revision: f8e9fcba6a18d8f25447e3340c8e2205f158279a
+  specs:
+    twitter-bootstrap-rails (0.0.2)
+      railties (~> 3.0)
+      thor (~> 0.14)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -161,4 +169,5 @@ DEPENDENCIES
   spork
   sqlite3
   therubyracer-heroku
+  twitter-bootstrap-rails!
   uglifier

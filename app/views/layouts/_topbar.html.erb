@@ -1,9 +1,19 @@
-<ul>
-  <% if user_signed_in? %>  
-    <li><%= link_to "Sign out", destroy_user_session_path , :method => :delete %></li>
-    <li><%= link_to "Edit setting", edit_user_registration_path %></li>
-  <% else %>  
-    <li><%= link_to "Sign up", new_user_registration_path %></li>
-    <li><%= link_to "Sign in", new_user_session_path %></li>
-  <% end %>  
-</ul>
+<div class="fill">
+  <div class="container">
+    <h3><%= link_to "MuseumCreated.com", root_path %></h3>
+    <ul class="nav">
+      <li><%= link_to "Top" , root_path %></li>
+      <li><%= link_to "Artists", "#" %></li>
+      <li><%= link_to "Search", "#" %></li>        
+    </ul>
+    <ul class="nav secondary-nav">
+      <% if user_signed_in? -%>
+        <li><%= link_to "アカウント情報変更", edit_user_registration_path %></li>
+        <li><%= link_to "ログアウト", destroy_user_session_path , :method => :delete %></li>
+      <% else -%>
+        <li><%= link_to "登録", new_user_registration_path %></li>
+        <li><%= link_to "ログイン", new_user_session_path %></li>
+      <% end %>
+    </ul>
+  </div>
+</div> <!-- /fill -->

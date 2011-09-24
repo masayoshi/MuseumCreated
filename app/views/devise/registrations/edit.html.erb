@@ -1,25 +1,57 @@
-<h2>アカウント情報変更</h2>
+<div class="page-header">
+  <h2>アカウント情報変更</h2>    
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
-  <%= devise_error_messages! %>
+<div class="row">
+  <div class="span10">
+    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+      <% if resource.errors.any? -%>
+        <div class="alert-message block-message error">
+          <h3><%= "#{resource.errors.count}つのエラーのため保存できませんでした。" %></h3>
+          <ul>
+            <% resource.errors.full_messages.each do |msg| -%>
+              <li><%= msg %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :email, 'メールアドレス' %>
+          <div class="input">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :password, 'パスワード変更' %>
+          <div class="input">
+            <%= f.password_field :password %>
+            <span class="help-block">変更しない場合は空欄のままにしておいてください</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :password_confirmation, 'パスワード変更確認' %>
+          <div class="input">
+            <%= f.password_field :password_confirmation %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :current_password, '現在のパスワード' %>
+          <div class="input">
+            <%= f.password_field :current_password %>
+            <span class="help-block">ユーザ情報を変更するためには、現在のパスワードが必要です</span>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "更新", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span6">
+    <h3>退会</h3>
+    <p><%= link_to "このアカウントを削除する", registration_path(resource_name), :confirm => "本当に退会してよろしいですか?", :method => :delete %></p>
 
-  <div><%= f.label :email, 'メールアドレス' %><br />
-  <%= f.email_field :email %></div>
+  </div>
+</div>
 
-  <div><%= f.label :password, 'パスワード変更' %> <i>(変更しない場合は空欄のままにしておいてください)</i><br />
-  <%= f.password_field :password %></div>
-
-  <div><%= f.label :password_confirmation, 'パスワード変更確認' %><br />
-  <%= f.password_field :password_confirmation %></div>
-
-  <div><%= f.label :current_password, '現在のパスワード' %> <i>(ユーザ情報を変更するためには、現在のパスワードが必要です)</i><br />
-  <%= f.password_field :current_password %></div>
-
-  <div><%= f.submit "更新" %></div>
-<% end %>
-
-<h3>退会</h3>
-
-<p><%= link_to "このアカウントを削除する", registration_path(resource_name), :confirm => "本当に退会してよろしいですか?", :method => :delete %>.</p>
-
-<%= link_to "戻る", :back %>

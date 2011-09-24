@@ -1,17 +1,40 @@
-<h2>ログイン</h2>
+<div class="page-header">
+  <h2>MuseumCreated.comにログイン</h2>    
+</div>
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-  <div><%= f.label :email, 'メールアドレス' %><br />
-  <%= f.email_field :email %></div>
-
-  <div><%= f.label :password, 'パスワード' %><br />
-  <%= f.password_field :password %></div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, 'パスワードを覚えておく' %></div>
-  <% end -%>
-
-  <div><%= f.submit "ログイン" %></div>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+<div class="row">
+  <div class="span10">
+    <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+      <% if resource.errors.any? -%>
+        <div class="alert-message block-message error">
+          <h3><%= "#{resource.errors.count}つのエラーのためログインできませんでした。" %></h3>
+          <ul>
+            <% resource.errors.full_messages.each do |msg| -%>
+              <li><%= msg %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :email, 'メールアドレス' %>
+          <div class="input">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :password, 'パスワード' %>
+          <div class="input">
+            <%= f.password_field :password %>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "ログイン", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span6">
+    <%= render :partial => "devise/shared/links" %>
+  </div>
+</div>
