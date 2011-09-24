@@ -1,0 +1,12 @@
+<h2>アカウント登録確認メールの再送</h2>
+
+<%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email, 'メールアドレス' %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.submit "アカウント登録確認メールの再送" %></div>
+<% end %>
+
+<%= render :partial => "devise/shared/links" %>
