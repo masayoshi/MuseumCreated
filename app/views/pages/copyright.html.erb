@@ -1,2 +1,18 @@
-<h1>Pages#copyright</h1>
-<p>Find me in app/views/pages/copyright.html.erb</p>
+<% @title = "Copyright" %>
+<div class="page-header">
+  <h1>Copy Right <small>著作権の扱い方について</small></h1>
+</div>
+<div class="row">
+  <div class="span10 columns">
+	  <p>ページ自体はリンクフリーですが、当サイトにある情報の著作権は全て各権利者に属しており、権利者の許可の無い「販売・賃貸・転載」は著作権法に違反します。</p>
+	  <p>当サイト上よりリンクする作品は、必ず“自らが権利者である”もしくは“権利者の許可を得ている”ものとしてください。</p>
+	  <p>著作権法において当サイトを通じた違法行為がございましたら、大変お手数ではありますが、support@mu-cre.comまでご連絡ください。</p>
+	  <br>
+	  <p>著作権におきましては、昨今様々な課題・問題点が各方面から提示されています。</p>
+	  <p>今後、どのような制度が出来るのか、果たしてそれがどのような結果をもたらすのか、未来は未だに定まってはおりませんが、Mu-creではどのような状況においても当サイトをご利用いただく皆様が楽しめる場を目指し、努力していきます。</p>
+  </div>
+  
+  <div class="span6 columns">
+    <%= render 'right_col' %>    
+  </div>
+</div>
