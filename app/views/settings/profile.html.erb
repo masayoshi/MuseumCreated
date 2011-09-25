@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="span16">
+  <h2><%= current_user.username%>の情報変更</h2>
+  <%= render 'tabs' %>
+  </div> 
+</div>
+
+<div class="row">
+  <div class="span12">
+    <%= form_for(@user, :url => settings_update_path , :html => { :method => :put }) do |f| %>
+      <% if @user.errors.any? -%>
+        <div class="alert-message block-message error">
+          <h3><%= "#{@user.errors.count}つのエラーのため保存できませんでした。" %></h3>
+          <ul>
+            <% @user.errors.full_messages.each do |msg| -%>
+              <li><%= msg %></li>
+            <% end -%>
+          </ul>
+        </div>
+      <% end -%>
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :name, '名前' %>
+          <div class="input">
+            <%= f.text_field :name %>
+            <span class="help-block">みんなが見つけられるように、普段使っているアーティスト名を入力しましょう。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :url, 'ホームページ' %>
+          <div class="input">
+            <%= f.url_field :url %>
+            <span class="help-block">ホームページやブログをお持ちでしたら、ここにアドレスを入力してください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :biography, '自己紹介' %>
+          <div class="input">
+            <%= f.text_area :biography ,:class => "xxlarge", :rows => "4" %>
+            <span class="help-block">500文字以内で自己紹介してください。</span>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "更新", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span4">
+    <h2>プロフィール</h2>
+    <p>この情報はあなたのプロフィールページに表示されます。自身の名前や自己紹介、自分ができることやコラボレーションする相手にやってほしいことなどを登録してください。</p>
+  </div>
+</div>

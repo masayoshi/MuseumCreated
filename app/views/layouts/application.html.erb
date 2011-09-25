@@ -15,7 +15,9 @@
       <%= render 'layouts/top_image' %>      
     <% end -%>
     <% flash.each do |name, msg| -%>
+      <div class="row", style='margin-top: 10px'>
       <%= display_flash(name,msg)%>
+      </div>
     <% end -%>
     <%= yield %>
   </div> <!-- /container -->

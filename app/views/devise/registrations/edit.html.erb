@@ -1,9 +1,12 @@
-<div class="page-header">
-  <h2>アカウント情報変更</h2>    
+<div class="row">
+  <div class="span16">
+  <h2><%= current_user.username%>の情報変更</h2>
+  <%= render 'settings/tabs' %>
+  </div> 
 </div>
 
 <div class="row">
-  <div class="span10">
+  <div class="span12">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
       <% if resource.errors.any? -%>
         <div class="alert-message block-message error">
@@ -16,6 +19,13 @@
         </div>
       <% end -%>
       <fieldset>
+        <div class="clearfix">
+          <%= f.label :username, 'ユーザ名' %>
+          <div class="input">
+            <%= f.text_field :username %>
+            <span class="help-block">ユーザ名にスペース(空白)は利用できません。</span>
+          </div>
+        </div>
         <div class="clearfix">
           <%= f.label :email, 'メールアドレス' %>
           <div class="input">
@@ -47,11 +57,11 @@
         </div>
       </fieldset>
     <% end -%>
-  </div>
-  <div class="span6">
-    <h3>退会</h3>
     <p><%= link_to "このアカウントを削除する", registration_path(resource_name), :confirm => "本当に退会してよろしいですか?", :method => :delete %></p>
-
+  </div>
+  <div class="span4">
+    <h2>アカウント情報</h2>
+    <p>この情報はあなたのログインアカウントに関する情報です。ユーザ名の変更やメールアドレスの変更、パスワードの変更が行えます。</p>
   </div>
 </div>
 

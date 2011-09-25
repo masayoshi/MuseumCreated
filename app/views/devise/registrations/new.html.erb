@@ -17,6 +17,13 @@
       <% end -%>
       <fieldset>
         <div class="clearfix">
+          <%= f.label :username, 'ユーザ名' %>
+          <div class="input">
+            <%= f.text_field :username %>
+            <span class="help-block">ユーザ名にスペース(空白)は利用できません。</span>
+          </div>
+        </div>
+        <div class="clearfix">
           <%= f.label :email, 'メールアドレス' %>
           <div class="input">
             <%= f.email_field :email %>
