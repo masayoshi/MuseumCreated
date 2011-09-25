@@ -1,5 +1,113 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-<% tag_cloud(@interests, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-  <%= link_to tag.name, "#", :class => css_class %>
-<% end %>
+<% @title = "Home" %>
+<!-- Top Contents -->
+<section id="about">
+  <div class="page-header">
+    <h2>Welcome to MuseumCreated.com<small> アーティストたちの芸術活動を支援するサイトです</small></h2>
+  </div>
+  <div class="row">
+    <div class="span6 columns">
+      <h3>３ステップでミュークリを始めよう！</h3>
+      <ul>
+		<li>アーティスト登録をする</li>
+		<li>コラボレーションしたいアーティストを探す</li>
+		<li>興味のあるアーティストにオファーを送る</li>
+	  </ul>
+      <p><%= link_to "今すぐ登録する »", new_user_registration_path ,:class=> "btn" %></p>
+    </div>
+    
+    <div class="span5 columns">
+      <h3>最近参加したアーティスト</h3>
+      <p>
+        <% @recent_confirmed_users.each do |user| -%>
+          <%= link_to gravatar_image_tag(user.email ,:class => "gravatar", :width=>"50",:alt => user.username), path_to_artist(user.username) %>
+        <% end -%>
+      </p>      
+      <h3>最近ログインしたアーティスト</h3>
+      <p>
+        <% @recent_login_users.each do |user| -%>
+          <%= link_to gravatar_image_tag(user.email ,:class => "gravatar",:width=>"50",:alt => user.username), path_to_artist(user.username) %>
+        <% end -%>
+      </p>
+    </div>
+    
+    <div class="span5 columns">
+      <h3>MuseumCreated.comのソーシャルメディアをチェック!</h3>
+      <p>ミュークリのソーシャルメディアをチェック!</p>
+      <p><%= link_to image_tag("Twitter.png"),"http://twitter.com/#!/MuseumCreated" %><%= link_to image_tag("Facebook.png"),"http://www.facebook.com/pages/MuseumCreatedcom/207156882674562" %></p>
+    </div>
+  </div>
+  
+  <div class="page-header">
+  <h2>アーティストを探す <small>ジャンルやキーワードでコラボレーションするアーティストを探しましょう</small></h2>
+  </div>
+  <div class="row">
+    <div class="span2 columns">
+      <h3>ジャンル</h3>
+      <ul class="unstyled">
+		<li><%= link_to "MUSIC", artists_path(:genre_id => 1) %></li>
+		<li><%= link_to "PHOTO", artists_path(:genre_id => 2) %></li>
+		<li><%= link_to "DANCE", artists_path(:genre_id => 3) %></li>
+		<li><%= link_to "FASHION", artists_path(:genre_id => 4) %></li>
+		<li><%= link_to "MOVIE", artists_path(:genre_id => 5) %></li>
+		<li><%= link_to "COMEDY", artists_path(:genre_id => 6) %></li>
+		<li><%= link_to "ILLUSTRATION", artists_path(:genre_id => 7) %></li>
+		<li><%= link_to "Other", artists_path(:genre_id => 8) %></li>
+	  </ul>
+    </div>
+    <div class="span7">
+      <h3>あなたはどんなことができる？</h3>
+        <% tag_cloud(@interests, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+          <%= link_to tag.name, artists_path(:interest_tag => tag.name), :class => css_class %>
+        <% end %>
+    </div>
+    <div>
+      <h3>あなたはなにをしてほしい？</h3>
+      <div class="portlet_tags">
+        <% tag_cloud(@skills, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+          <%= link_to tag.name, artists_path(:skill_tag => tag.name), :class => css_class %>
+        <% end %>
+	  </div>
+    </div>
+  </div><!-- /row -->
+  <div class="page-header">
+  </div>
+  <div class="row">
+    <div class="span8">
+      <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+      <script>
+        new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 4,
+        interval: 30000,
+        width: 'auto',
+        height: 200,
+        theme: {
+        shell: {
+        background: '#222222',
+        color: '#ffffff'
+        },
+        tweets: {
+        background: '#fcfcfc',
+        color: '#222222',
+        links: '#222222'
+        }
+        },
+        features: {
+        scrollbar: false,
+        loop: false,
+        live: false,
+        hashtags: true,
+        timestamp: true,
+        avatars: false,
+        behavior: 'all'
+        }
+        }).render().setUser('MuseumCreated').start();
+      </script>
+    </div>
+    <div class="span8">
+      <div id="fb-root"></div>
+      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/MuseumCreatedcom/207156882674562" width="460" show_faces="true" border_color="" stream="false" header="false"></fb:like-box>
+    </div>
+  </div>
+</section>

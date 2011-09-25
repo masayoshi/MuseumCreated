@@ -1,7 +1,11 @@
 # -*- coding: utf-8 -*-
 class ArtistsController < ApplicationController
   def index
-    @artists = User.order(:created_at).page(params[:page])
+    @artists = User.refine_search(params).page(params[:page])
+    @interests = User.refine_search(params).interest_counts
+    @skills = User.refine_search(params).skill_counts
+    @areas =  User.refine_search(params).area_counts
+    @free_words =  User.refine_search(params).free_word_counts
   end
 
   def show

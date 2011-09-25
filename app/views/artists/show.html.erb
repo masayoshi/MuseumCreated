@@ -1,6 +1,53 @@
 <% @title = @artist.username %>
-<h1><%= @artist.username %></h1>
-<%= @artist.name %>
-<%= @artist.url %>
-<%= @artist.biography %>
-
+<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span5 columns">
+	<h2><%= @artist.username %></h2>
+	<br>
+	<p>
+      <%= link_to gravatar_image_tag(@artist.email,:alt => @artist.username), @artist.username %>
+    </p>
+    <h3>自己紹介</h3>
+    <p><%= @artist.biography %></p>
+    <h3>ジャンル</h3>
+    <p><%= @artist.genre.name %></p>
+    <% if @artist.url.present? -%>
+      <h3>ホームページ</h3>
+      <p><%= link_to @artist.url,@artist.url %></p>
+    <% end -%>
+    <h3>活動地域</h3>
+    <% @artist.areas.each do |tag| -%>
+      <%= link_to tag.name, artists_path(:area_tag => tag.name) %>
+    <% end -%>
+    <h3>できること</h3>
+    <% @artist.skills.each do |tag| -%>
+      <%= link_to tag.name, artists_path(:ability_tag => tag.name) %>
+    <% end -%>
+    <h3>してほしいこと</h3>
+    <% @artist.interests.each do |tag| -%>
+      <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
+    <% end -%>
+    <h3>フリーワード</h3>
+    <% @artist.interests.each do |tag| -%>
+      <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
+    <% end -%>
+    <br />
+    <% if user_signed_in? && current_user.id == @artist.id -%>
+      <%= link_to 'プロフィールを編集する', settings_profile_path %>
+    <% end -%>
+    <br />
+  </div>
+  
+  <div class="span6 columns">
+    <h2>作品</h2>
+  </div>
+  
+  <div class="span5 columns">
+    <h3>オファーした人</h3>
+    <p></p>
+    <h3>オファーされた人</h3>
+    <p></p>
+    <h3>Comments</h3>
+    <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%= request.url %>" num_posts="2" width="300"></fb:comments>
+  </div>
+</div> 

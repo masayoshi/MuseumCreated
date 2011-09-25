@@ -6,6 +6,7 @@ gem 'devise'
 gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
+gem 'gravatar_image_tag'
 
 # For Heroku
 group :production do

@@ -1,10 +1,4 @@
-<div class="row">
-  <div class="span16">
-  <h2><%= current_user.username%>の情報変更</h2>
-  <%= render 'tabs' %>
-  </div> 
-</div>
-
+<%= render 'settings/profile_bar' %>
 <div class="row">
   <div class="span12">
     <%= form_for(@user, :url => settings_update_path , :html => { :method => :put }) do |f| %>
@@ -19,6 +13,14 @@
         </div>
       <% end -%>
       <fieldset>
+        <div class="clearfix">
+          <%= f.label :name, 'アイコン' %>
+          <div class="input">
+            <%= gravatar_image_tag(current_user.email,:alt => current_user.username) %>
+            <%= link_to "アイコンの変更(Gravatar)","http://gravatar.com/emails/", :target => "_blank"%>
+            <span class="help-block">MuseumCreated.comでは、<%= link_to "Gravatar","http://ja.gravatar.com/", :target => "_blank"%>を用いてアイコン表示をしています。<br />まだGravatarのアカウントをお持ちでない方は<%= link_to "こちら","http://ja.gravatar.com/site/signup/", :target => "_blank"%>から登録してください。</span>
+          </div>
+        </div>
         <div class="clearfix">
           <%= f.label :name, '名前' %>
           <div class="input">

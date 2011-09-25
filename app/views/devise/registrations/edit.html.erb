@@ -1,10 +1,4 @@
-<div class="row">
-  <div class="span16">
-  <h2><%= current_user.username%>の情報変更</h2>
-  <%= render 'settings/tabs' %>
-  </div> 
-</div>
-
+<%= render 'settings/profile_bar' %>
 <div class="row">
   <div class="span12">
     <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
