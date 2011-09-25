@@ -34,6 +34,13 @@
           </div>
         </div>
         <div class="clearfix">
+          <%= f.label :genre, 'ジャンル' %>
+          <div class="input">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+            <span class="help-block">あなたがアーティスト活動をしているジャンルを選んでください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
           <%= f.label :biography, '自己紹介' %>
           <div class="input">
             <%= f.text_area :biography ,:class => "xxlarge", :rows => "4" %>

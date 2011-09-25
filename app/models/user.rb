@@ -1,4 +1,5 @@
 class User < ActiveRecord::Base
+  belongs_to :genre
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -7,7 +8,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessible :username, :name, :biography, :url
+  attr_accessible :username, :name, :biography, :url, :genre_id
 
   validates :username, :presence => true, :length => { :within => 3..50 }, :uniqueness => true, :format   => { :with => /\A[_a-zA-Z0-9]+\Z/ } # only A..Za..z0..9-_
   validates :name, :length => { :within => 3..100 },:allow_blank => true
