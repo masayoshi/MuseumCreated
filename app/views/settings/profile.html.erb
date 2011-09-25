@@ -41,6 +41,34 @@
           </div>
         </div>
         <div class="clearfix">
+          <%= f.label :skill_list, 'できること' %>
+          <div class="input">
+            <%= f.text_field :skill_list, :class => "xlarge" %>
+            <span class="help-block">あなたができること、提供できる技術、スキルをカンマ区切りで記述ください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :interest_list, 'してほしいこと' %>
+          <div class="input">
+            <%= f.text_field :interest_list, :class => "xlarge" %>
+            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野などをカンマ区切りで記述ください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :area_list, '活動地域' %>
+          <div class="input">
+            <%= f.text_field :area_list, :class => "xlarge" %>
+            <span class="help-block">あなたの活動地域をカンマ区切りで記述ください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :free_word_list, 'フリーワード' %>
+          <div class="input">
+            <%= f.text_field :free_word_list, :class => "xlarge" %>
+            <span class="help-block">あなたに関することを自由にカンマ区切りで記述ください。</span>
+          </div>
+        </div>
+        <div class="clearfix">
           <%= f.label :biography, '自己紹介' %>
           <div class="input">
             <%= f.text_area :biography ,:class => "xxlarge", :rows => "4" %>

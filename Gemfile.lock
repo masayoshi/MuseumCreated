@@ -38,6 +38,8 @@ GEM
       activesupport (= 3.1.0)
     activesupport (3.1.0)
       multi_json (~> 1.0)
+    acts-as-taggable-on (2.1.1)
+      rails
     annotate (2.4.0)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
@@ -156,6 +158,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  acts-as-taggable-on
   annotate
   coffee-rails (~> 3.1.0)
   devise

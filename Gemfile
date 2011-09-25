@@ -5,6 +5,7 @@ gem 'sqlite3'
 gem 'devise'
 gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'kaminari'
+gem 'acts-as-taggable-on'
 
 # For Heroku
 group :production do

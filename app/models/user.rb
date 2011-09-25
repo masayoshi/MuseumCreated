@@ -16,4 +16,9 @@ class User < ActiveRecord::Base
   validates :url, :format => {:with => URI::regexp(%w(http https))},:allow_blank => true
 
   paginates_per 2
+  
+  # For tagging
+  acts_as_taggable_on  :skills, :interests ,:areas, :free_words
+  attr_accessible :skill_list, :interest_list, :area_list, :free_word_list
+
 end
