@@ -4,6 +4,7 @@ gem 'rails', '3.1.0'
 gem 'sqlite3'
 gem 'devise'
 gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'kaminari'
 
 # For Heroku
 group :production do

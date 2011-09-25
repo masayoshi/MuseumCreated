@@ -1,10 +1,13 @@
 MuseumCreated::Application.routes.draw do
 
-  get "settings/profile"
-  put "settings/update"
+  match "/artists", :to => "artists#index"
+  match "/artists/:username", :to => "artists#show"
+
+  get "/settings/profile"
+  put "/settings/update"
 
   devise_for :users do
-    match "settings/account", :to => "devise/registrations#edit"
+    match "/settings/account", :to => "devise/registrations#edit"
   end
   
   match "/about", :to => "pages#about"

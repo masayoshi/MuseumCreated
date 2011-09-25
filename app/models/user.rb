@@ -13,4 +13,6 @@ class User < ActiveRecord::Base
   validates :name, :length => { :within => 3..100 },:allow_blank => true
   validates :biography, :length => { :maximum => 1000 }
   validates :url, :format => {:with => URI::regexp(%w(http https))},:allow_blank => true
+
+  paginates_per 2
 end

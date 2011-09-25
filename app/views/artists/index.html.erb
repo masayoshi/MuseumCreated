@@ -1,0 +1,6 @@
+<% @title = "Artists" -%>
+<h1>Artists</h1>
+<% @artists.each do |artist| %>
+  <%= link_to_artist artist.username %>
+<% end %>
+<%= paginate @artists %>
