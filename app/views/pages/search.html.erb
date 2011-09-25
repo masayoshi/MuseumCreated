@@ -1,0 +1,54 @@
+<% @title = "search" %>
+<div class="page-header", style="margin-top: 10px">
+  <h2>Detail Search<small> アーティストを条件に応じて検索しましょう</small></h2>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= form_tag(artists_path, :method => "get" ) do %>
+      <fieldset>
+        <div class="clearfix">
+          <%= label_tag :search_word, '名前、自己紹介に' %>
+          <div class="input">
+            <%= text_field_tag :search_word %> を含む
+            <span class="help-block">名前、自己紹介の中に入っているキーワードから探します。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= label_tag :interest_tag, 'あなたに' %>
+          <div class="input">
+            <%= text_field_tag :interest_tag %> してほしい
+            <span class="help-block">あなたにしてほしいことのキーワードから探します。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= label_tag :skill_tag, '' %>
+          <div class="input">
+            <%= text_field_tag :skill_tag %> ができる
+            <span class="help-block">アーティストができることのキーワードから探します。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= label_tag :area_tag, '活動地域が' %>
+          <div class="input">
+            <%= text_field_tag :area_tag %> である
+            <span class="help-block">アーティストの活動地域から探します。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= label_tag :free_word_tag, 'フリーワードに' %>
+          <div class="input">
+            <%= text_field_tag :free_word_tag %> を登録している
+            <span class="help-block">アーティストが登録しているフリーワードから探します。</span>
+          </div>
+        </div>
+        <div class="actions">
+          <%= submit_tag "アーティストを検索する", :class => "btn primary" %>
+        </div>
+      </fieldset>
+    <% end -%>
+  </div>
+  <div class="span4">
+    <h2>詳細検索</h2>
+    <p>複数の条件を組み合わせて検索できます。アーティスの名前や自己紹介文、キーワードを入植し、希望のアーティスを検索してください。</p>
+  </div>
+</div>

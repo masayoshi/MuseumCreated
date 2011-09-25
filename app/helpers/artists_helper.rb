@@ -15,7 +15,7 @@ module ArtistsHelper
     keywords_list += " できること: <span class='label'>#{params[:skill_tag]}</span>" if params[:skill_tag].present?
     keywords_list += " 活動地域: <span class='label'>#{params[:area_tag]}</span>" if params[:area_tag].present?
     keywords_list += " フリーワード: <span class='label'>#{params[:free_word_tag]}</span>" if params[:free_word_tag].present?
-    keywords_list += " 名前、自己紹介: <span class='label'>#{params[:search_word_tag]}</span>" if params[:search_word].present?
+    keywords_list += " 名前、自己紹介: <span class='label'>#{params[:search_word]}</span>" if params[:search_word].present?
     keywords_list += " ジャンル: <span class='label'>#{Genre.find(params[:genre_id]).name}</span>" if params[:genre_id].present?
     if keywords_list.present?
       ("<p><b>絞り込み条件</b>" + keywords_list + "</p>").html_safe
