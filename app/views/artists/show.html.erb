@@ -8,7 +8,7 @@
       <%= link_to gravatar_image_tag(@artist.email,:alt => @artist.username), @artist.username %>
     </p>
     <h3>自己紹介</h3>
-    <p><%= @artist.biography %></p>
+    <p><%= Sanitize.clean( @artist.biography, Sanitize::Config::CUSTOM).html_safe %></p>
     <h3>ジャンル</h3>
     <p><%= @artist.genre.name %></p>
     <% if @artist.url.present? -%>

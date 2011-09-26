@@ -7,6 +7,8 @@ gem 'twitter-bootstrap-rails', :git => 'http://github.com/seyhunak/twitter-boots
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'gravatar_image_tag'
+gem 'sanitize'
+gem 'tinymce-rails'
 
 # For Heroku
 group :production do
