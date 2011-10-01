@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 module ArtistsHelper
   def link_to_artist(artist_username)
-    link_to artist_username, "artists/#{artist_username}"
+    link_to artist_username, "/artists/#{artist_username}"
   end
 
   def path_to_artist(artist_username)
@@ -23,7 +23,6 @@ module ArtistsHelper
   end
   
   # Return link to tags search.
-    # Return link to tags search.
   def link_to_add_retrieval_tag(tag_name, tag_type, params, css_class)    
     retrieval_conditions = { }
     

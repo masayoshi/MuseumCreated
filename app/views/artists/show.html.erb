@@ -7,6 +7,9 @@
 	<p>
       <%= link_to gravatar_image_tag(@artist.email,:alt => @artist.username), @artist.username %>
     </p>
+    <% if user_signed_in? && current_user.id == @artist.id -%>
+      <%= link_to 'プロフィールを編集する', settings_profile_path %><br />
+    <% end -%>
     <h3>自己紹介</h3>
     <p><%= Sanitize.clean( @artist.biography, Sanitize::Config::CUSTOM).html_safe %></p>
     <h3>ジャンル</h3>
@@ -32,21 +35,36 @@
       <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
     <% end -%>
     <br />
-    <% if user_signed_in? && current_user.id == @artist.id -%>
-      <%= link_to 'プロフィールを編集する', settings_profile_path %>
-    <% end -%>
-    <br />
   </div>
   
   <div class="span6 columns">
-    <h2>作品</h2>
+    <h2>Works</h2>
+    <%= link_to "新しい作品を登録する", new_work_path if user_signed_in? %>
+    <% @works.each do |work| %>
+      <h4><%= link_to work.title, work_path(work) %></h4>
+      <p>
+        <%= link_to work.url, work.url if work.url.present? %><br />
+        <% if work.tag_list.present? -%>
+          <b>タグ: </b><%= work.tag_list %><br />
+        <% end -%>
+        <% if work.summary.present? -%>
+          <blockquote>
+            <p><%= work.summary %></p>
+          </blockquote>
+        <% end -%>
+      </p>
+      <p>Created at <%= work.created_at %>
+        <% if user_signed_in? && current_user.id == work.user.id -%>
+          | <%= link_to "編集", edit_work_path(work) %> | <%= link_to "削除" ,work_path(work), confirm: '本当に削除しますか？', method: :delete %>
+        <% end -%>
+      </p>
+      <div class="page-header", style="margin-top: 10px">
+      </div>
+    <% end %>
+    <b><%= @artist.username %>の作品を<%= link_to "もっと見る",artist_works_path(:username => @artist.username) %></b>
   </div>
   
   <div class="span5 columns">
-    <h3>オファーした人</h3>
-    <p></p>
-    <h3>オファーされた人</h3>
-    <p></p>
     <h3>Comments</h3>
     <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%= request.url %>" num_posts="2" width="300"></fb:comments>
   </div>

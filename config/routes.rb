@@ -1,7 +1,10 @@
 MuseumCreated::Application.routes.draw do
 
+  resources :works
+
   match "/artists", :to => "artists#index"
   match "/artists/:username", :to => "artists#show"
+  match "/artists/:username/works", :to => "works#index", :as => "artist_works"
 
   get "/settings/profile"
   put "/settings/update"

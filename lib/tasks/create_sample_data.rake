@@ -25,5 +25,13 @@ def make_users
                      :skill_list => Faker::Lorem.words(10).join(','),
                      :area_list => Faker::Lorem.words(3).join(','),
                      :free_word_list => Faker::Lorem.words(10).join(','))
+
+    10.times do
+      @tmp_user.works.create(:title => Faker::Name.name,
+                             :url => ("http://www." + Faker::Internet.domain_name),
+                             :summary => Faker::Lorem.sentence(10),
+                             :tag_list => Faker::Lorem.words(10).join(','),
+                             :description => Faker::Lorem.sentence(20))
+    end
   end
 end
