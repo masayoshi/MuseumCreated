@@ -49,11 +49,16 @@ class User < ActiveRecord::Base
   }
 
   scope :refine_search, lambda{ |search_params|
+    confirmed.
     genre_of(search_params[:genre_id]).
     name_or_biography_matches(search_params[:search_word]).
     tagged_with_interest(search_params[:interest_tag]).
     tagged_with_skill(search_params[:skill_tag]).
     tagged_with_area(search_params[:area_tag]).
-    tagged_with_free_word(search_params[:free_word_tag])    
+    tagged_with_free_word(search_params[:free_word_tag])
   }
+
+  scope :confirmed, where("confirmed_at IS NOT NULL")
+  scope :recent_login, confirmed.order("current_sign_in_at desc").limit(5)
+  scope :recent_confirmed, confirmed.order("confirmed_at desc").limit(5)
 end

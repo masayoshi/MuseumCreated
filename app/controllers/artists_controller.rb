@@ -9,10 +9,11 @@ class ArtistsController < ApplicationController
   end
 
   def show
-    @artist = User.find_by_username(params[:username])
-    @works = @artist.works.limit(5)
+    @artist = User.confirmed.find_by_username(params[:username])
     if @artist.nil?
       redirect_to artists_path, :alert => "ご指定のアーティストは見つかりませんでした"
+    else
+      @works = @artist.works.limit(5)
     end
   end
 

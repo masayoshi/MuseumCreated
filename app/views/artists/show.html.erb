@@ -11,9 +11,9 @@
       <%= link_to 'プロフィールを編集する', settings_profile_path %><br />
     <% end -%>
     <h3>自己紹介</h3>
-    <p><%= Sanitize.clean( @artist.biography, Sanitize::Config::CUSTOM).html_safe %></p>
+    <p><%= Sanitize.clean( @artist.biography, Sanitize::Config::CUSTOM).html_safe if @artist.biography.present? %></p>
     <h3>ジャンル</h3>
-    <p><%= @artist.genre.name %></p>
+    <p><%= @artist.genre.name if @artist.genre.present?%></p>
     <% if @artist.url.present? -%>
       <h3>ホームページ</h3>
       <p><%= link_to @artist.url,@artist.url %></p>

@@ -20,9 +20,9 @@
           <% if artist.interest_list.present? -%>
             <b>してほしいこと: </b><%= artist.interest_list %><br />
           <% end -%>
-          <% if artist.interest_list.present? -%>
+          <% if artist.biography.present? -%>
             <blockquote>
-              <p><%= truncate(artist.biography,:length => 80) %></p>
+              <p><%= truncate(Sanitize.clean(artist.biography, Sanitize::Config::RESTRICTED),:length => 80).html_safe %></p>
             </blockquote>
           <% end -%>
           </p>

@@ -2,7 +2,7 @@ module ApplicationHelper
 
   # Return a title on a per-page bassis.
   def title
-    base_title = "MusiumCreated.com"
+    base_title = "MuseumCreated.com"
     if @title.nil?
       base_title
     else
