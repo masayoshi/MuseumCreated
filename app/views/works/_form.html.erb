@@ -43,7 +43,24 @@
         <div class="clearfix">
           <%= f.label :description, '作品詳細' %>
           <div class="input">
-            <%= f.text_area :description ,:class => "xxlarge", :rows => "20" %>
+            <%= f.text_area :description ,:class => "xxlarge", :rows => "20", :id => "ckeditor" %>
+            <script type="text/javascript">
+              $(function() {
+              CKEDITOR.config.toolbar = [
+              ,['FontSize'],['TextColor','BGColor'],['Bold','Italic','Underline','Strike']
+              ,['NumberedList','BulletedList','-','Outdent','Indent','Blockquote']
+              ,['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],'/'
+              ,['Link','Unlink']
+              ,['Image','HorizontalRule','Smiley'],['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat']
+              ,['Source','-','ShowBlocks','Preview']
+              ];
+              CKEDITOR.config.language = 'ja';
+              CKEDITOR.config.width  = '530px';
+              CKEDITOR.config.height = '300px';
+              CKEDITOR.config.resize_enabled = false;
+              CKEDITOR.replace('ckeditor');
+              });
+            </script>
             <span class="help-block">1000文字以内で作品を紹介してください。</span>
           </div>
         </div>

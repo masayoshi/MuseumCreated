@@ -73,7 +73,24 @@
         <div class="clearfix">
           <%= f.label :biography, '自己紹介' %>
           <div class="input">
-            <%= f.text_area :biography ,:class => "xxlarge", :rows => "20" %>
+            <%= f.text_area :biography, :class => "xxlarge", :rows => "20", :id => "ckeditor" %>
+            <script type="text/javascript">
+              $(function() {
+              CKEDITOR.config.toolbar = [
+              ,['FontSize'],['TextColor','BGColor'],['Bold','Italic','Underline','Strike']
+              ,['NumberedList','BulletedList','-','Outdent','Indent','Blockquote']
+              ,['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],'/'
+              ,['Link','Unlink']
+              ,['Image','HorizontalRule','Smiley'],['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat']
+              ,['Source','-','ShowBlocks','Preview']
+              ];
+              CKEDITOR.config.language = 'ja';
+              CKEDITOR.config.width  = '530px';
+              CKEDITOR.config.height = '300px';
+              CKEDITOR.config.resize_enabled = false;
+              CKEDITOR.replace('ckeditor');
+              });
+            </script>
             <span class="help-block">500文字以内で自己紹介してください。</span>
           </div>
         </div>

@@ -14,4 +14,4 @@
 //= require bootstrap-tabs-1.3.0
 //= require bootstrap-twipsy-1.3.0
 //= require bootstrap-popover-1.3.0
-//= require tinymce-jquery
+var CKEDITOR_BASEPATH = '/assets/ckeditor/';

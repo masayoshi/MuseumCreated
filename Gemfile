@@ -8,7 +8,6 @@ gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'gravatar_image_tag'
 gem 'sanitize'
-gem 'tinymce-rails'
 gem 'contact_us'
 
 # For Heroku
