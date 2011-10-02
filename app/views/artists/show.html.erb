@@ -39,7 +39,7 @@
   
   <div class="span6 columns">
     <h2>Works</h2>
-    <%= link_to "新しい作品を登録する", new_work_path if user_signed_in? %>
+    <%= link_to "新しい作品を登録する", new_work_path if user_signed_in? && @artist.username == current_user.username %>
     <% @works.each do |work| %>
       <h4><%= link_to work.title, work_path(work) %></h4>
       <p>
