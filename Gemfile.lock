@@ -51,6 +51,9 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.1.2)
+    contact_us (0.1.4)
+      formtastic (>= 1.2.0)
+      rails (>= 3.0.0)
     devise (1.4.7)
       bcrypt-ruby (~> 3.0)
       orm_adapter (~> 0.0.3)
@@ -68,6 +71,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.0.0)
       i18n (~> 0.4)
+    formtastic (2.0.0)
+      rails (~> 3.0)
     gravatar_image_tag (1.0.0)
     growl (1.0.3)
     guard (0.7.0)
@@ -170,6 +175,7 @@ DEPENDENCIES
   acts-as-taggable-on
   annotate
   coffee-rails (~> 3.1.0)
+  contact_us
   devise
   factory_girl_rails
   faker

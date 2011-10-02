@@ -1,0 +1,45 @@
+<% @title = "Contact" -%>
+<div class="page-header", style='margin-top: 10px'>
+  <h1>Contact Form <small>MuseumCreated.comに関するお問い合わせ</small></h1>
+</div>
+<div class="row">
+  <div class="span12">
+    <%= form_for @contact, :url => contacts_path do |f| %>
+      <% if @contact.errors.any? %>
+        <div class="alert-message block-message error">
+          <h3><%= "#{@contact.errors.count}つのエラーのため送信できませんでした。" %></h3>
+
+          <ul>
+            <% @contact.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <fieldset>
+        <div class="clearfix">
+          <%= f.label :email, 'メールアドレス' %>
+          <div class="input">
+            <%= f.email_field :email %>
+            <span class="help-block">あなたのメールアドレスを記入してください。問い合わせの回答をお送りします。</span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <%= f.label :message, '問い合わせ内容' %>
+          <div class="input">
+            <%= f.text_area :message, :class => "xxlarge", :rows => "10" %>
+            <span class="help-block">問い合わせ内容をお書きください。</span>
+          </div>
+        </div>
+        <div class="actions">
+          <%= f.submit "送信", :class => "btn primary", :name => "commit" %>
+        </div>
+      </fieldset>
+    <% end %>
+  </div>
+  <div class="span4">
+    <h2>Contact Us</h2>
+    <p>MuseumCreated.comへのご意見やご感想、ご質問をお送りください。</p>
+  </div>
+</div>

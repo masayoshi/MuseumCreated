@@ -15,9 +15,6 @@ class PagesController < ApplicationController
   def copyright
   end
 
-  def contact
-  end
-
   def search
   end
 end
