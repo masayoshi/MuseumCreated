@@ -31,7 +31,7 @@
       <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
     <% end -%>
     <h3>フリーワード</h3>
-    <% @artist.interests.each do |tag| -%>
+    <% @artist.free_words.each do |tag| -%>
       <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
     <% end -%>
     <br />
