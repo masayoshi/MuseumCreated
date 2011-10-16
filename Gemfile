@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.1.0'
+gem 'rack', '1.3.3'
 gem 'sqlite3'
 gem 'devise'
-gem 'twitter-bootstrap-rails' #, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+# gem 'twitter-bootstrap-rails' #, :git => 'http://github.com/seyhunak/twitter-bootstrap-rails.git'
+gem 'less-rails-bootstrap'
 gem 'kaminari'
 gem 'acts-as-taggable-on'
 gem 'gravatar_image_tag'
