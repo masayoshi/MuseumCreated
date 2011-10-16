@@ -24,7 +24,7 @@
     <% end -%>
     <h3>できること</h3>
     <% @artist.skills.each do |tag| -%>
-      <%= link_to tag.name, artists_path(:ability_tag => tag.name) %>
+      <%= link_to tag.name, artists_path(:skill_tag => tag.name) %>
     <% end -%>
     <h3>してほしいこと</h3>
     <% @artist.interests.each do |tag| -%>
@@ -32,7 +32,7 @@
     <% end -%>
     <h3>フリーワード</h3>
     <% @artist.free_words.each do |tag| -%>
-      <%= link_to tag.name, artists_path(:interest_tag => tag.name) %>
+      <%= link_to tag.name, artists_path(:free_word_tag => tag.name) %>
     <% end -%>
     <br />
   </div>

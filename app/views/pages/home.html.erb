@@ -60,7 +60,7 @@
           <%= link_to tag.name, artists_path(:interest_tag => tag.name), :class => css_class %>
         <% end %>
     </div>
-    <div>
+    <div class="span7">
       <h3>あなたはなにをしてほしい？</h3>
       <div class="portlet_tags">
         <% tag_cloud(@skills, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
