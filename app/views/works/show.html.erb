@@ -55,7 +55,7 @@
     </p>
     <div class="page-header", style="margin-top: 10px">
     </div>
-    <p><%= Sanitize.clean( @work.description, Sanitize::Config::CUSTOM).html_safe %></p>
+    <p><%= Sanitize.clean( @work.description, Sanitize::Config::CUSTOM).html_safe if @work.description.present? %></p>
     <div class="page-header", style="margin-top: 10px">
     </div>
     <b><%= @work.user.username %>の作品を<%= link_to "もっと見る",artist_works_path(:username =>  @work.user.username) %></b>

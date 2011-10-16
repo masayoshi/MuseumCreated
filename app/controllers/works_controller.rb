@@ -4,7 +4,7 @@ class WorksController < ApplicationController
   # GET /works
   # GET /works.json
   def index
-    @works = Work.refine_search(params).page(params[:page])
+    @works = Work.refine_search(params).order('created_at DESC').page(params[:page])
     @tags = Work.refine_search(params).tag_counts
 
     respond_to do |format|

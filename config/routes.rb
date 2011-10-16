@@ -1,5 +1,7 @@
 MuseumCreated::Application.routes.draw do
 
+  resources :feeds
+
   resources :works
 
   match "/artists", :to => "artists#index"

@@ -6,6 +6,7 @@
     <h2>Works List<small> アーティストが登録した作品一覧です</small></h2>
   <% end -%>
   <%= link_to "新しい作品を登録する", new_work_path if user_signed_in? %>
+  <%= link_to "RSSを管理する", feeds_path if user_signed_in? %>
   <%= search_tag(params) %>
 </div>
 <div class="row">

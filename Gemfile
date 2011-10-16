@@ -9,6 +9,7 @@ gem 'acts-as-taggable-on'
 gem 'gravatar_image_tag'
 gem 'sanitize'
 gem 'contact_us'
+gem 'feedzirra'
 
 # For Heroku
 group :production do

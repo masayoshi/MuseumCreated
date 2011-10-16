@@ -1,0 +1,24 @@
+<%= form_for(@feed) do |f| %>
+  <% if @feed.errors.any? %>
+    <div class="alert-message block-message error">
+      <h3><%= "#{@feed.errors.count}つのエラーのため保存できませんでした。" %></h3>
+
+      <ul>
+      <% @feed.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+        <fieldset>
+        <div class="clearfix">
+          <%= f.label :url, 'RSS Feed' %>
+          <div class="input">
+            <%= f.url_field :url %>
+            <%= f.submit "登録", :class => "btn primary", :name => "commit" %>
+            <span class="help-block">RSS FeedのURLを入力してください。</span>
+          </div>
+        </div>
+        </fieldset>
+<% end %>
