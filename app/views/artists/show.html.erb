@@ -1,6 +1,5 @@
 <% @title = @artist.username %>
-<p id="notice"><%= notice %></p>
-<div class="row">
+<div class="row", style='margin-top: 10px'>
   <div class="span5 columns">
 	<h2><%= @artist.username %></h2>
 	<br>
@@ -66,6 +65,15 @@
   </div>
   
   <div class="span5 columns">
+    <h3>Collaboration</h3>
+    <p>オファーされた数：<b><%= @artist.offers.count %></b></p>
+    <p>オファーした数：<b><%= @artist.offerings.count %></b></p>
+    <% if user_signed_in? && current_user.id == @artist.id -%>
+      <%= link_to '自分のオファーを管理する', offers_path %><br />
+    <% end -%>    
+    <% if user_signed_in? && current_user.id != @artist.id -%>
+      <%= link_to "#{@artist.username}にオファーする", new_offer_path(:artist_id => @artist.id ), :class=>"btn small primary" %>
+    <% end -%>
     <h3>Comments</h3>
     <div id="fb-root"></div><script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:comments href="<%= request.url %>" num_posts="2" width="300"></fb:comments>
   </div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016031355) do
+ActiveRecord::Schema.define(:version => 20111016215357) do
 
   create_table "feeds", :force => true do |t|
     t.string   "title"
@@ -28,6 +28,19 @@ ActiveRecord::Schema.define(:version => 20111016031355) do
   end
 
   add_index "genres", ["name"], :name => "index_genres_on_name", :unique => true
+
+  create_table "offers", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "status"
+    t.integer  "offerer_user_id"
+    t.integer  "offered_user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "offers", ["offered_user_id"], :name => "index_offers_on_offered_user_id"
+  add_index "offers", ["offerer_user_id"], :name => "index_offers_on_offerer_user_id"
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

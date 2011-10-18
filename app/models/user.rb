@@ -2,6 +2,9 @@ class User < ActiveRecord::Base
   belongs_to :genre
   has_many :works , :dependent => :destroy
   has_many :feeds, :dependent => :destroy
+  has_many :works , :dependent => :destroy
+  has_many :offerings, :foreign_key => "offerer_user_id", :class_name => 'Offer', :dependent => :destroy
+  has_many :offers, :foreign_key => "offered_user_id", :class_name => 'Offer'
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -63,3 +66,30 @@ class User < ActiveRecord::Base
   scope :recent_login, confirmed.order("current_sign_in_at desc").limit(5)
   scope :recent_confirmed, confirmed.order("confirmed_at desc").limit(5)
 end
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :integer         not null, primary key
+#  email                  :string(255)     default(""), not null
+#  encrypted_password     :string(128)     default(""), not null
+#  reset_password_token   :string(255)
+#  reset_password_sent_at :datetime
+#  remember_created_at    :datetime
+#  sign_in_count          :integer         default(0)
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :string(255)
+#  last_sign_in_ip        :string(255)
+#  confirmation_token     :string(255)
+#  confirmed_at           :datetime
+#  confirmation_sent_at   :datetime
+#  created_at             :datetime
+#  updated_at             :datetime
+#  username               :string(255)
+#  name                   :string(255)
+#  biography              :text
+#  url                    :string(255)
+#  genre_id               :integer
+#
+

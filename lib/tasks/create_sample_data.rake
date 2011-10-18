@@ -4,6 +4,7 @@ namespace :db do
     require 'faker'
     Rake::Task['db:reset'].invoke
     make_users
+    make_offers
   end
 end
 
@@ -33,5 +34,17 @@ def make_users
                              :tag_list => Faker::Lorem.words(10).join(','),
                              :description => Faker::Lorem.sentence(20))
     end
+  end
+end
+
+def make_offers
+  user_num = User.all.count
+  User.all.each do |user|
+  20.times do
+    user.offerings.create!(:title => Faker::Lorem.sentence(4),
+                       :description => Faker::Lorem.sentence(10),
+                       :status => rand(3),
+                       :offered_user_id => rand(user_num))
+  end
   end
 end

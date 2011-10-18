@@ -1,8 +1,15 @@
 MuseumCreated::Application.routes.draw do
 
   resources :feeds
-
   resources :works
+  resources :offers do
+    collection do
+      get :check
+    end
+    member do
+      get :accept, :reject
+    end
+  end
 
   match "/artists", :to => "artists#index"
   match "/artists/:username", :to => "artists#show"

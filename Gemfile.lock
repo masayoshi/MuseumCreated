@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/ctran/annotate_models.git
+  revision: cfeec96c9ca0fa5035b10be3d73e798cc4fc52f7
+  specs:
+    annotate (2.4.1.beta1)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -32,7 +38,6 @@ GEM
       multi_json (~> 1.0)
     acts-as-taggable-on (2.1.1)
       rails
-    annotate (2.4.0)
     arel (2.2.1)
     bcrypt-ruby (3.0.1)
     builder (3.0.0)
@@ -188,7 +193,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
-  annotate
+  annotate!
   coffee-rails (~> 3.1.0)
   contact_us
   devise

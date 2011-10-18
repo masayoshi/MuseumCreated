@@ -1,0 +1,42 @@
+<%= form_for(@offer) do |f| %>
+  <% if @offer.errors.any? %>
+    <div class="alert-message block-message error">
+      <h3><%= "#{@offer.errors.count}つのエラーのためオファーできませんでした。" %></h3>
+
+      <ul>
+        <% @offer.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <fieldset>
+    <div class="clearfix">
+      <%= f.label :artist, 'オファーする相手' %>
+      <div class="input">
+        <%= link_to gravatar_image_tag(@offer.offered_user.email,:alt => @offer.offered_user.username), path_to_artist(@offer.offered_user.username) %>
+        <%= link_to "#{@offer.offered_user.username}の作品を見る", artist_works_path(@offer.offered_user.username) %>
+
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :title, 'タイトル' %>
+      <div class="input">
+        <%= f.text_field :title %>
+        <span class="help-block">オファーのタイトルを入力してください。</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :description, 'オファー内容' %>
+      <div class="input">
+        <%= f.text_area :description, :class => "xxlarge", :rows => "10"  %>
+        <span class="help-block">オファーの内容を記述してください。この内容を見て相手のアーティストはコラボレーションするか判断します。</span>
+      </div>
+    </div>
+    <%= f.hidden_field :offered_user_id, :value => @offer.offered_user_id %>
+    <div class="actions">
+      <%= f.submit "オファーする", :class => "btn primary", :name => "commit" %>
+    </div>
+  </fieldset>
+<% end %>
