@@ -43,6 +43,8 @@
     <div class="page-header", style="margin-top: 10px">
     </div>
     <p>現在のステータス：<%= display_status(@offer.status) %></p>
-    <p>このオファーを <%= link_to '受諾する', accept_offer_path(@offer.id), :class=>"btn learge success" %> <%= link_to '拒否する', reject_offer_path(@offer.id),:class=>"btn learge danger" %></p>
+    <% if @offer.unevaluated? %>
+      <p>このオファーを <%= link_to '受諾する', accept_offer_path(@offer.id), :class=>"btn learge success" %> <%= link_to '拒否する', reject_offer_path(@offer.id),:class=>"btn learge danger" %></p>
+    <% end %>
   </div>
 </div> 

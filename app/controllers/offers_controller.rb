@@ -37,24 +37,29 @@ class OffersController < ApplicationController
 
   # DELETE /offers/1
   def destroy
-    @offer = Offer.offered_by(current_user.profile.id).find(params[:id])
-    @offer.destroy
-
-    respond_to do |format|
-      format.html { redirect_to(offers_url) }
-      format.xml  { head :ok }
-    end
+    if @offer = current_user.offerings.unevaluated.find_by_id(params[:id])
+      @offer.destroy
+      redirect_to check_offers_path, notice: 'オファーが取り消されました'
+    else
+      redirect_to check_offers_path, alert: 'オファーが取り消せませんでした'
+    end      
   end
 
   def accept
-    @offer = current_user.offers.find_by_id(params[:id])
-    @offer.accept!
-    redirect_to offer_path(@offer.id), :notice => 'オファーを受諾しました'
+    if @offer = current_user.offers.unevaluated.find_by_id(params[:id])
+      @offer.accept!
+      redirect_to offer_path(@offer.id), :notice => 'オファーを受諾しました'
+    else
+      redirect_to offers_path, alert: 'オファーを正常に受諾できませんでした'
+    end
   end
 
   def reject
-    @offer = current_user.offers.find_by_id(params[:id])
-    @offer.reject!
-    redirect_to offer_path(@offer.id), :alert => 'オファーを拒否しました'
+    if @offer = current_user.offers.unevaluated.find_by_id(params[:id])
+      @offer.reject!
+      redirect_to offer_path(@offer.id), :alert => 'オファーを拒否しました'
+    else
+      redirect_to offers_path, alert: 'オファーを正常に拒否できませんでした'      
+    end
   end
 end

@@ -1,0 +1,4 @@
+<%= form_tag add_comment_project_path(@project) do %>
+  <%= text_area_tag :body, nil,:class => "xxlarge", :rows => "3" %>
+  <%= submit_tag "コメントする", :class => "btn primary", :name => "commit" %>
+<% end %>

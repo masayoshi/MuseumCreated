@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
   has_many :works , :dependent => :destroy
   has_many :offerings, :foreign_key => "offerer_user_id", :class_name => 'Offer', :dependent => :destroy
   has_many :offers, :foreign_key => "offered_user_id", :class_name => 'Offer'
+  has_and_belongs_to_many :projects
+  has_many :comments, :dependent => :destroy
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

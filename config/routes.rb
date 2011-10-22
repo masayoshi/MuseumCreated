@@ -1,5 +1,12 @@
 MuseumCreated::Application.routes.draw do
 
+  resources :projects do
+    member do
+      post :add_comment
+      get :del_comment
+    end
+  end
+
   resources :feeds
   resources :works
   resources :offers do

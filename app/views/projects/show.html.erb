@@ -1,0 +1,52 @@
+<% @title = "Your Projects" -%>
+<%= render 'offers/profile_bar' %>
+
+<div class="row">
+  <div class="span12">
+    <h2><%= @project.title %></h2>
+    <p><%= @project.description %></p>
+    <%= link_to 'プロジェクト情報の更新', edit_project_path(@project) %>
+  </div>
+  <div class="span4">
+    <h3>コラボメイト</h3>
+    <p>
+      <% @project.users.each do |user| %>
+        <%= link_to link_to gravatar_image_tag(user.email,:width => "30px",:alt => user.username) + user.username, path_to_artist(user.username) %>
+      <% end %>
+    </p>
+  </div>
+</div>
+<div class="page-header">
+</div>
+<div class="row">
+  <div class="span2">
+    <p><%= link_to gravatar_image_tag(current_user.email ,:alt => current_user.username), path_to_artist(current_user.username) %></p>
+    
+  </div>
+  <div class="span14">
+    <%= render 'comment_form' %>
+  </div>
+</div>
+<div class="page-header", style="margin-top: 10px">
+</div>
+<div class="row">
+  <div class="span16">
+    <% @comments.each do |comment| %>
+      <div class="row">
+        <div class="span14">
+          <p><%= comment.body %></p>
+        </div>
+        <div class="span2">
+          <p><%= link_to gravatar_image_tag(comment.user.email ,:width => "50px", :alt => comment.user.username), path_to_artist(comment.user.username) %></p>
+          <p><%= comment.created_at %></p>
+          <% if comment.user_id == current_user.id -%>
+          <p><%= link_to "削除", del_comment_project_path(@project,:comment_id => comment.id) %></p>
+          <% end -%>
+        </div>
+      </div>
+      <div class="page-header", style="margin-top: 10px">
+      </div>
+    <% end %>
+    <%= paginate @comments %>    
+  </div> 
+</div>

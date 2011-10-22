@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016215357) do
+ActiveRecord::Schema.define(:version => 20111022065317) do
+
+  create_table "comments", :force => true do |t|
+    t.text     "body"
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "feeds", :force => true do |t|
     t.string   "title"
@@ -41,6 +49,19 @@ ActiveRecord::Schema.define(:version => 20111016215357) do
 
   add_index "offers", ["offered_user_id"], :name => "index_offers_on_offered_user_id"
   add_index "offers", ["offerer_user_id"], :name => "index_offers_on_offerer_user_id"
+
+  create_table "projects", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "projects_users", :id => false, :force => true do |t|
+    t.integer "user_id"
+    t.integer "project_id"
+  end
 
   create_table "taggings", :force => true do |t|
     t.integer  "tag_id"

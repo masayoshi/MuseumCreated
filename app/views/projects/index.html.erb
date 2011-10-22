@@ -1,0 +1,30 @@
+<% @title = "Your Projects" -%>
+<%= render 'offers/profile_bar' %>
+
+<div class="row">
+  <div class="span16">
+    <% unless @projects.empty? -%>
+      <table class="zebra-striped">
+        <thead>
+          <tr>
+            <td>タイトル</td>
+            <td>概要</td>
+            <td width="50">件数</td>
+          </tr>
+        </thead>
+        <tbody>
+          <% @projects.each do |project| %>
+            <tr>
+              <td><%= link_to project.title, project_path(project) %></td>
+              <td><%= truncate(project.description,:length => 80) %></td>
+              <td><%= project.comments.count%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= paginate @projects %>
+    <% else -%>
+      <p>進行中のプロジェクトはありません。</p>
+    <% end -%>
+  </div>
+</div>

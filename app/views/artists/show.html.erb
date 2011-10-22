@@ -69,7 +69,7 @@
     <p>オファーされた数：<b><%= @artist.offers.count %></b></p>
     <p>オファーした数：<b><%= @artist.offerings.count %></b></p>
     <% if user_signed_in? && current_user.id == @artist.id -%>
-      <%= link_to '自分のオファーを管理する', offers_path %><br />
+      <%= link_to 'コラボレーションを管理する', offers_path %><br />
     <% end -%>    
     <% if user_signed_in? && current_user.id != @artist.id -%>
       <%= link_to "#{@artist.username}にオファーする", new_offer_path(:artist_id => @artist.id ), :class=>"btn small primary" %>

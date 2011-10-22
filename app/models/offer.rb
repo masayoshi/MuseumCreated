@@ -33,6 +33,9 @@ class Offer < ActiveRecord::Base
   
   def accept!
     self.update_attribute(:status, ACCEPTED)
+    project = Project.create!(:title => self.title, :description => self.description)
+    project.users << self.offerer_user
+    project.users << self.offered_user    
   end
 
   def reject!
@@ -45,6 +48,10 @@ class Offer < ActiveRecord::Base
   
   def rejected?
     return true if self.status == REJECTED
+  end
+
+  def unevaluated?
+    return true if self.status == UNEVALUATED
   end
 
   private

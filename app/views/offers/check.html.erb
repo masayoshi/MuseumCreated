@@ -16,6 +16,7 @@
             <td>タイトル</td>
             <td>概要</td>
             <td width=40>状態</td>
+            <td width=30>取消</td>
           </tr>
         </thead>
         <tbody>
@@ -25,6 +26,11 @@
               <td><%= offer.title %></td>
               <td><%= truncate(offer.description,:length => 80) %></td>
               <td><%= display_status(offer.status) %></td>
+              <td>
+                <% if offer.unevaluated? -%>
+                <%= link_to '×', offer, confirm: '本当にこのオファーを取り消しますか?', method: :delete , :class=>"btn small"%>
+                <% end %>
+              </td> 
             </tr>
           <% end %>
         </tbody>
