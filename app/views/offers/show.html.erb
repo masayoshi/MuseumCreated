@@ -1,18 +1,16 @@
 <%= render 'profile_bar' %>
 <div class="row">
   <div class="span5 columns">
-	<h2><%= @offer.offerer_user.username %>からのオファー</h2>
-	<br>
-	<p>
-      <%= link_to gravatar_image_tag(@offer.offerer_user.email,:alt => @offer.offerer_user.username), @offer.offerer_user.username %>
-    </p>
+    <h2><%= @offer.offerer_user.username %>からのオファー</h2>
+    <br>
+    <p><%= link_to gravatar_image_tag(@offer.offerer_user.email,:alt => @offer.offerer_user.username), path_to_artist(@offer.offerer_user.username),target:"_blank" %></p>
     <h3>自己紹介</h3>
     <p><%= Sanitize.clean( @offer.offerer_user.biography, Sanitize::Config::RELAXED).html_safe %></p>
     <h3>ジャンル</h3>
     <p><%= @offer.offerer_user.genre.name %></p>
     <% if @offer.offerer_user.url.present? -%>
       <h3>ホームページ</h3>
-      <p><%= link_to @offer.offerer_user.url,@offer.offerer_user.url %></p>
+      <p><%= link_to @offer.offerer_user.url,@offer.offerer_user.url,target:"_blank" %></p>
     <% end -%>
     <h3>活動地域</h3>
     <% @offer.offerer_user.areas.each do |tag| -%>

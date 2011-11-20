@@ -11,6 +11,7 @@ gem 'gravatar_image_tag'
 gem 'sanitize'
 gem 'contact_us'
 gem 'feedzirra'
+gem 'authbuttons-rails'
 
 # For Heroku
 group :production do

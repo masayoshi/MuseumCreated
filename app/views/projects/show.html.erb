@@ -11,7 +11,7 @@
     <h3>コラボメイト</h3>
     <p>
       <% @project.users.each do |user| %>
-        <%= link_to link_to gravatar_image_tag(user.email,:width => "30px",:alt => user.username) + user.username, path_to_artist(user.username) %>
+        <%= link_to link_to gravatar_image_tag(user.email,:width => "30px",:alt => user.username) + user.username, path_to_artist(user.username),target:"_blank" %>
       <% end %>
     </p>
   </div>
@@ -20,7 +20,7 @@
 </div>
 <div class="row">
   <div class="span2">
-    <p><%= link_to gravatar_image_tag(current_user.email ,:alt => current_user.username), path_to_artist(current_user.username) %></p>
+    <p><%= link_to gravatar_image_tag(current_user.email ,:alt => current_user.username), path_to_artist(current_user.username),target:"_blank" %></p>
     
   </div>
   <div class="span14">
@@ -37,7 +37,7 @@
           <p><%= comment.body %></p>
         </div>
         <div class="span2">
-          <p><%= link_to gravatar_image_tag(comment.user.email ,:width => "50px", :alt => comment.user.username), path_to_artist(comment.user.username) %></p>
+          <p><%= link_to gravatar_image_tag(comment.user.email ,:width => "50px", :alt => comment.user.username), path_to_artist(comment.user.username),target:"_blank" %></p>
           <p><%= comment.created_at %></p>
           <% if comment.user_id == current_user.id -%>
           <p><%= link_to "削除", del_comment_project_path(@project,:comment_id => comment.id) %></p>
