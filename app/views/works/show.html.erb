@@ -1,10 +1,9 @@
 <% @title = @work.user.username %>
-<p id="notice"><%= notice %></p>
 <div class="row">
   <div class="span5 columns">
-	<h2><%= @work.user.username %></h2>
-	<br>
-	<p>
+    <h2><%= @work.user.username %></h2>
+    <br>
+    <p>
       <%= link_to gravatar_image_tag(@work.user.email,:alt => @work.user.username), @work.user.username %>
     </p>
     <% if user_signed_in? && current_user.id == @work.user.id -%>
@@ -16,7 +15,7 @@
     <p><%= @work.user.genre.name %></p>
     <% if @work.user.url.present? -%>
       <h3>ホームページ</h3>
-      <p><%= link_to @work.user.url,@work.user.url %></p>
+      <p><%= link_to @work.user.url, @work.user.url, :target => "_blank" %></p>
     <% end -%>
     <h3>活動地域</h3>
     <% @work.user.areas.each do |tag| -%>
@@ -40,7 +39,7 @@
   <div class="span11 columns">
     <h2><%= link_to @work.title, work_path %></h2>
     <p>
-      <%= link_to @work.url, @work.url if @work.url.present? %><br />
+      <%= link_to @work.url, @work.url,:target => "_blank" if @work.url.present? %><br />
       <% if @work.tag_list.present? -%>
         <b>タグ: </b><%= @work.tag_list %><br />
       <% end -%>

@@ -14,7 +14,7 @@
     <% @works.each do |work| %>
       <h4><%= link_to work.title, work_path(work) %></h4>
       <p>
-        <%= link_to work.url, work.url if work.url.present? %><br />
+        <%= link_to work.url, work.url, :target => "_blank" if work.url.present? %><br />
         <% if work.tag_list.present? -%>
           <b>タグ: </b><%= work.tag_list %><br />
         <% end -%>

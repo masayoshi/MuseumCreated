@@ -8,10 +8,11 @@
     <div class="span6 columns">
       <h3>３ステップでミュークリを始めよう！</h3>
       <ul>
-		<li>アーティスト登録をする</li>
-		<li>コラボレーションしたいアーティストを探す</li>
-		<li>興味のあるアーティストにオファーを送る</li>
-	  </ul>
+        <li>アーティスト登録をする</li>
+        <li>コラボレーションしたいアーティストを探す</li>
+        <li>興味のあるアーティストにオファーを送る</li>
+      </ul>
+      <h4><%= link_to "詳しい使い方はこちら", about_path %></h4><br/>
       <p><%= link_to "今すぐ登録する »", new_user_registration_path ,:class=> "btn" %></p>
     </div>
     
@@ -33,7 +34,7 @@
     <div class="span5 columns">
       <h3>MuseumCreated.comのソーシャルメディアをチェック!</h3>
       <p>ミュークリのソーシャルメディアをチェック!</p>
-      <p><%= link_to image_tag("Twitter.png"),"http://twitter.com/#!/MuseumCreated" %><%= link_to image_tag("Facebook.png"),"http://www.facebook.com/pages/MuseumCreatedcom/207156882674562" %></p>
+      <p><%= link_to image_tag("Twitter.png"),"http://twitter.com/#!/MuseumCreated",:target => "_blank" %><%= link_to image_tag("Facebook.png"),"http://www.facebook.com/pages/MuseumCreatedcom/207156882674562", :target => "_blank" %></p>
     </div>
   </div>
   
@@ -44,15 +45,15 @@
     <div class="span2 columns">
       <h3>ジャンル</h3>
       <ul class="unstyled">
-		<li><%= link_to "MUSIC", artists_path(:genre_id => 1) %></li>
-		<li><%= link_to "PHOTO", artists_path(:genre_id => 2) %></li>
-		<li><%= link_to "DANCE", artists_path(:genre_id => 3) %></li>
-		<li><%= link_to "FASHION", artists_path(:genre_id => 4) %></li>
-		<li><%= link_to "MOVIE", artists_path(:genre_id => 5) %></li>
-		<li><%= link_to "COMEDY", artists_path(:genre_id => 6) %></li>
-		<li><%= link_to "ILLUSTRATION", artists_path(:genre_id => 7) %></li>
-		<li><%= link_to "Other", artists_path(:genre_id => 8) %></li>
-	  </ul>
+        <li><%= link_to "MUSIC", artists_path(:genre_id => 1) %></li>
+        <li><%= link_to "PHOTO", artists_path(:genre_id => 2) %></li>
+        <li><%= link_to "DANCE", artists_path(:genre_id => 3) %></li>
+        <li><%= link_to "FASHION", artists_path(:genre_id => 4) %></li>
+        <li><%= link_to "MOVIE", artists_path(:genre_id => 5) %></li>
+        <li><%= link_to "COMEDY", artists_path(:genre_id => 6) %></li>
+        <li><%= link_to "ILLUSTRATION", artists_path(:genre_id => 7) %></li>
+        <li><%= link_to "Other", artists_path(:genre_id => 8) %></li>
+      </ul>
     </div>
     <div class="span7">
       <h3>あなたはどんなことができる？</h3>
@@ -66,7 +67,7 @@
         <% tag_cloud(@skills, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
           <%= link_to tag.name, artists_path(:skill_tag => tag.name), :class => css_class %>
         <% end %>
-	  </div>
+      </div>
     </div>
   </div><!-- /row -->
   <div class="page-header">
@@ -84,13 +85,13 @@
         height: 200,
         theme: {
         shell: {
-        background: '#222222',
-        color: '#ffffff'
+        background: '#BFBFBF',
+        color: '#404040'
         },
         tweets: {
-        background: '#fcfcfc',
-        color: '#222222',
-        links: '#222222'
+        background: '#ffffff',
+        color: '#404040',
+        links: '#0069D6'
         }
         },
         features: {
