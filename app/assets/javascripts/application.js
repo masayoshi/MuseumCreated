@@ -12,5 +12,5 @@ var CKEDITOR_BASEPATH = '/assets/ckeditor/';
 $(document).ready(function(){
         $('#topbar').dropdown();
         $('a[rel=twipsy]').twipsy({placement: 'below'});
-        $('a[rel=popover]').popover({placement: 'above'});
+        $('a[rel=popover]').popover({placement: 'below'});
 });

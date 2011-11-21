@@ -65,8 +65,8 @@ class User < ActiveRecord::Base
   }
 
   scope :confirmed, where("confirmed_at IS NOT NULL")
-  scope :recent_login, confirmed.order("current_sign_in_at desc").limit(5)
-  scope :recent_confirmed, confirmed.order("confirmed_at desc").limit(5)
+  scope :recent_login, confirmed.order("current_sign_in_at desc").limit(10)
+  scope :recent_confirmed, confirmed.order("confirmed_at desc").limit(10)
 end
 # == Schema Information
 #

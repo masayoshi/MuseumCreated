@@ -67,8 +67,10 @@ class Sanitize
       node_name = env[:node_name]
       
       if node_name == "script"
-        node = node.replace(CGI.escapeHTML(node.to_s))
-        {:whitelist_node => [node]}
+        unless node['src'].include? "ext.nicovideo.jp" && "source.pixiv.net"
+          node = node.replace(CGI.escapeHTML(node.to_s))
+          {:whitelist_nodes => [node]}
+        end
       end
     end
 
@@ -83,8 +85,21 @@ class Sanitize
           {:whitelist_nodes => [node]}
         end        
       end
-      
     end
+
+    # Remove embed tag for unallowed sites
+    remove_embed_for_unallowed_sites = lambda do |env|
+      node = env[:node]
+      node_name = env[:node_name]
+
+      if node_name == "embed"
+        unless node['src'].include? "player.soundcloud.com"
+          node.unlink
+          {:whitelist_nodes => [node]}
+        end        
+      end
+    end
+
 
     CUSTOM = {
       # Whether or not to allow HTML comments. Allowing comments is strongly
@@ -131,11 +146,11 @@ class Sanitize
         'colgroup', 'dd', 'del', 'dl', 'dt', 'em', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6',
         'i', 'img', 'li', 'ol', 'p', 'pre', 'q', 'small', 'strike', 'strong',
         'sub', 'sup', 'table', 'tbody', 'td', 'tfoot', 'th', 'thead', 'tr', 'u',
-        'ul', 'span', 'div', 'iframe' ],
+        'ul', 'span', 'div', 'iframe', 'script', 'noscript','object','param','embed'],
 
       :attributes => {
         :all => ['class', 'id', 'style'],
-        'a'          => ['href', 'title'],
+        'a'          => ['href', 'title', 'target'],
         'blockquote' => ['cite'],
         'col'        => ['span', 'width'],
         'colgroup'   => ['span', 'width'],
@@ -148,7 +163,11 @@ class Sanitize
         'th'         => ['abbr', 'axis', 'colspan', 'rowspan', 'scope',
                          'width'],
         'ul'         => ['type'],
-        'iframe'     => ['src', 'width', 'height', 'frameborder', 'allowfullscreen']
+        'iframe'     => ['src', 'width', 'height', 'frameborder', 'allowfullscreen'],
+        'script'     => ['src', 'type', 'data-id', 'data-size','data-border','charset'],
+        'object'     => ['width', 'height'],
+        'param'      => ['name', 'value'],
+        'embed'      => ['allowscriptaccess','src', 'type','width', 'height']
       },
 
       :protocols => {
@@ -158,7 +177,10 @@ class Sanitize
         'blockquote' => {'cite' => ['http', 'https', :relative]},
         'img'        => {'src'  => ['http', 'https', :relative]},
         'q'          => {'cite' => ['http', 'https', :relative]},
-        'iframe'     => {'src'  => ['http']}
+        'iframe'     => {'src'  => ['http']},
+        'script'     => {'src'  => ['http']},
+        'param'      => {'value'  => ['http', 'https']},
+        'embed'      => {'src'  => ['https']}
       }
     }
   end

@@ -23,6 +23,9 @@ class ProjectsController < ApplicationController
   def update
     @project = current_user.projects.find_by_id(params[:id])
     if @project.update_attributes(params[:project])
+      @project.users.each do |user|
+        OfferMailer.inform_comment(@project,user).deliver unless user.id == current_user.id
+      end
       redirect_to @project, notice: 'プロジェクトは正常に更新されました'
     else
       render action: "edit"
@@ -33,6 +36,9 @@ class ProjectsController < ApplicationController
     @project = current_user.projects.find_by_id(params[:id])
     @comment = @project.comments.create(:body => params[:body],:user_id => current_user.id)
     if @comment.save
+      @project.users.each do |user|
+        OfferMailer.inform_comment(@project,user).deliver unless user.id == current_user.id
+      end
       redirect_to project_path(@project), notice: "コメントしました。"
     else
       redirect_to project_path(@project), alert: "コメントに失敗しました。"

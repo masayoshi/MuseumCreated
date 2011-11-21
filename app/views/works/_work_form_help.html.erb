@@ -2,5 +2,13 @@
 <p>あなたが生み出した作品を登録してください。あなたの作品を公開することができます。<br />
 また、他のアーティストがあなたの作品を見てコラボレーションのオファーをしてくるかもしれません。</p>
 <h3>作品詳細のサポート</h3>
-<p>作品詳細では、HTMLを利用したリッチな情報を登録することができます。作品詳細の中に関する動画サイトのリンクや、画像のリンクを貼ることができます。<br />
-  現時点ではYoutube、ニコニコ動画に対応しています。</p>
+<p>作品詳細では、HTMLを利用したリッチな情報を登録することができます。作品詳細の中に関する動画サイトのリンクや、画像のリンクを貼ることができます。フォームの「ソース」ボタンを押し、各サービスの共有用のリンクを貼ってください。<br />
+現時点では以下サービスに対応しています。
+<ul>
+  <li><%= link_to "Youtube","http://www.youtube.com/",target:"_blank" %></li>
+  <li><%= link_to "ニコニコ動画","http://www.nicovideo.jp/",target:"_blank" %></li>
+  <li><%= link_to "SoundCloud","http://soundcloud.com/",target:"_blank" %></li>
+  <li><%= link_to "pixiv","http://www.pixiv.net/",target:"_blank" %></li>
+  <li><%= link_to "flicker","http://www.flickr.com/",target:"_blank" %></li>
+</ul>
+追加して欲しいサービスがあれば、<%= link_to "問い合わせフォーム", contact_us_path %>よりご連絡ください。</p>

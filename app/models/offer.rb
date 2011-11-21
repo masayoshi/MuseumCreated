@@ -35,7 +35,8 @@ class Offer < ActiveRecord::Base
     self.update_attribute(:status, ACCEPTED)
     project = Project.create!(:title => self.title, :description => self.description)
     project.users << self.offerer_user
-    project.users << self.offered_user    
+    project.users << self.offered_user
+    OfferMailer.inform_accepted(project,self).deliver
   end
 
   def reject!

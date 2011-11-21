@@ -29,6 +29,7 @@ class OffersController < ApplicationController
     @offer = current_user.offerings.build(params[:offer])
     
     if @offer.save
+      OfferMailer.inform_offer(@offer).deliver
       redirect_to "/artists/#{@offer.offered_user.username}", notice: '正常にオファーされました'
     else
       render :action => "new"

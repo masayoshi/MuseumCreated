@@ -16,7 +16,7 @@
       <p><%= link_to "今すぐ登録する »", new_user_registration_path ,:class=> "btn" %></p>
     </div>
     
-    <div class="span5 columns">
+    <div class="span10 columns">
       <h3>最近参加したアーティスト</h3>
       <p>
         <% @recent_confirmed_users.each do |user| -%>
@@ -29,12 +29,6 @@
           <%= link_to gravatar_image_tag(user.email ,:class => "gravatar",:width=>"50",:alt => user.username), path_to_artist(user.username), rel:"twipsy", title:user.username  %>
         <% end -%>
       </p>
-    </div>
-    
-    <div class="span5 columns">
-      <h3>MuseumCreated.comのソーシャルメディアをチェック!</h3>
-      <p>ミュークリのソーシャルメディアをチェック!</p>
-      <p><%= link_to image_tag("twitter_64.png"),"http://twitter.com/MuseumCreated",target:"_blank" %><%= link_to image_tag("facebook_64.png"),"http://www.facebook.com/pages/MuseumCreatedcom/207156882674562",target:"_blank" %></p>
     </div>
   </div>
   
