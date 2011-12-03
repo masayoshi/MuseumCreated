@@ -1,3 +1,30 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#skill_tags").tagit({
+          availableTags: <%= User.tag_counts_on(:skills).map(&:name).to_json.html_safe %> ,
+          singleField: true,
+          singleFieldNode: $('#skill_list')
+          });
+
+        $("#interest_tags").tagit({
+          availableTags: <%= User.tag_counts_on(:interests).map(&:name).to_json.html_safe %> ,
+          singleField: true,
+          singleFieldNode: $('#interest_list')
+          });
+        
+        $("#area_tags").tagit({
+          availableTags: <%= User.tag_counts_on(:areas).map(&:name).to_json.html_safe %> ,
+          singleField: true,
+          singleFieldNode: $('#area_list')
+          });
+
+        $("#free_word_tags").tagit({
+          availableTags: <%= User.tag_counts_on(:free_words).map(&:name).to_json.html_safe %> ,
+          singleField: true,
+          singleFieldNode: $('#free_word_list')
+          });
+    });
+</script>
 <%= render 'settings/profile_bar' %>
 <div class="row">
   <div class="span12">
@@ -45,29 +72,33 @@
         <div class="clearfix">
           <%= f.label :skill_list, 'できること' %>
           <div class="input">
-            <%= f.text_field :skill_list, :class => "xlarge" %>
-            <span class="help-block">あなたができること、提供できる技術、スキルをカンマ区切りで記述ください。</span>
+            <ul id="skill_tags" class="xxlarge" ></ul>
+            <%= f.hidden_field :skill_list, :id => "skill_list" %>
+            <span class="help-block">あなたができること、提供できる技術、スキルを記述ください。</span>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :interest_list, 'してほしいこと' %>
           <div class="input">
-            <%= f.text_field :interest_list, :class => "xlarge" %>
-            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野などをカンマ区切りで記述ください。</span>
+            <ul id="interest_tags" class="xxlarge" ></ul>
+            <%= f.hidden_field :interest_list, :id => "interest_list" %>
+            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野などを記述ください。</span>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :area_list, '活動地域' %>
           <div class="input">
-            <%= f.text_field :area_list, :class => "xlarge" %>
-            <span class="help-block">あなたの活動地域をカンマ区切りで記述ください。</span>
+            <ul id="area_tags" class="xxlarge" ></ul>
+            <%= f.hidden_field :area_list, :id => "area_list" %>
+            <span class="help-block">あなたの活動地域を記述ください。</span>
           </div>
         </div>
         <div class="clearfix">
           <%= f.label :free_word_list, 'フリーワード' %>
           <div class="input">
-            <%= f.text_field :free_word_list, :class => "xlarge" %>
-            <span class="help-block">あなたに関することを自由にカンマ区切りで記述ください。</span>
+            <ul id="free_word_tags" class="xxlarge" ></ul>
+            <%= f.hidden_field :free_word_list, :id => "free_word_list" %>
+            <span class="help-block">あなたに関することを自由に記述ください。</span>
           </div>
         </div>
         <div class="clearfix">

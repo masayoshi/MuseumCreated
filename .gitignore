@@ -15,3 +15,4 @@ spec/tmp/*
 config/*.yml
 rerun.txt
 pickle-email-*.html
+*.swp

@@ -1,8 +1,16 @@
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#mytags").tagit({
+          availableTags: <%= Work.tag_counts.map(&:name).to_json.html_safe %> ,
+          singleField: true,
+          singleFieldNode: $('#tag_list')
+          });
+    });
+</script>
 <%= form_for(@work) do |f| %>
   <% if @work.errors.any? %>
     <div class="alert-message block-message error">
       <h3><%= "#{@work.errors.count}つのエラーのため保存できませんでした。" %></h3>
-
       <ul>
       <% @work.errors.full_messages.each do |msg| %>
         <li><%= msg %></li>
@@ -10,62 +18,62 @@
       </ul>
     </div>
   <% end %>
-
-        <fieldset>
-        <div class="clearfix">
-          <%= f.label :title, 'タイトル' %>
-          <div class="input">
-            <%= f.text_field :title %>
-            <span class="help-block">作品のタイトルを入力してください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :url, 'URL' %>
-          <div class="input">
-            <%= f.url_field :url %>
-            <span class="help-block">作品のURLを入力してください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :tag_list, 'タグ' %>
-          <div class="input">
-            <%= f.text_field :tag_list, :class => "xlarge" %>
-            <span class="help-block">作品に関する情報をカンマ区切りで入力してください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :summary, '概要紹介' %>
-          <div class="input">
-            <%= f.text_field :summary, :class => "xxlarge" %>
-            <span class="help-block">作品の概要紹介をしてください。これは作品一覧の紹介文として表示されます。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :description, '作品詳細' %>
-          <div class="input">
-            <%= f.text_area :description ,:class => "xxlarge", :rows => "20", :id => "ckeditor" %>
-            <script type="text/javascript">
-              $(function() {
-              CKEDITOR.config.toolbar = [
+  <fieldset>
+    <div class="clearfix">
+      <%= f.label :title, 'タイトル' %>
+      <div class="input">
+        <%= f.text_field :title %>
+        <span class="help-block">作品のタイトルを入力してください。</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :url, 'URL' %>
+      <div class="input">
+        <%= f.url_field :url %>
+        <span class="help-block">作品のURLを入力してください。</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :tag_list, 'タグ' %>
+      <div class="input">
+        <ul id="mytags" class="xxlarge" ></ul>
+        <span class="help-block">作品に関する情報を入力してください。</span>
+      </div>
+    </div>
+    <%= f.hidden_field :tag_list, id:"tag_list" %>
+    <div class="clearfix">
+      <%= f.label :summary, '概要紹介' %>
+      <div class="input">
+        <%= f.text_field :summary, :class => "xxlarge" %>
+        <span class="help-block">作品の概要紹介をしてください。これは作品一覧の紹介文として表示されます。</span>
+      </div>
+    </div>
+    <div class="clearfix">
+      <%= f.label :description, '作品詳細' %>
+      <div class="input">
+        <%= f.text_area :description ,:class => "xxlarge", :rows => "20", :id => "ckeditor" %>
+        <script type="text/javascript">
+          $(function() {
+            CKEDITOR.config.toolbar = [
               ,['FontSize'],['TextColor','BGColor'],['Bold','Italic','Underline','Strike']
               ,['NumberedList','BulletedList','-','Outdent','Indent','Blockquote']
               ,['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],'/'
               ,['Link','Unlink']
               ,['Image','HorizontalRule','Smiley'],['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat']
               ,['Source','-','ShowBlocks','Preview']
-              ];
-              CKEDITOR.config.language = 'ja';
-              CKEDITOR.config.width  = '530px';
-              CKEDITOR.config.height = '300px';
-              CKEDITOR.config.resize_enabled = false;
-              CKEDITOR.replace('ckeditor');
-              });
-            </script>
-            <span class="help-block">1000文字以内で作品を紹介してください。</span>
-          </div>
-        </div>
-        <div class="actions">
-          <%= f.submit "登録", :class => "btn primary", :name => "commit" %>
-        </div>
-        </fieldset>
+            ];
+            CKEDITOR.config.language = 'ja';
+            CKEDITOR.config.width  = '530px';
+            CKEDITOR.config.height = '300px';
+            CKEDITOR.config.resize_enabled = false;
+            CKEDITOR.replace('ckeditor');
+          });
+        </script>
+        <span class="help-block">1000文字以内で作品を紹介してください。</span>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit "登録", :class => "btn primary", :name => "commit" %>
+    </div>
+  </fieldset>
 <% end %>
