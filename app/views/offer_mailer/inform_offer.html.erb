@@ -3,5 +3,5 @@
 日頃からMuseumCreated.comをご利用いただきありがとうございます。<br />
 <%= @offerer_user.username %>からオファーがありました！<br />
 以下のリンクより内容を確認してください。<br />
-<p><%= link_to "オファーを確認する", offer_path(@offer) %></p>
+<p><%= link_to "オファーを確認する", offer_url(@offer, host:"museum-created.heroku.com") %></p>
 
