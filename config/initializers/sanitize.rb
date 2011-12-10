@@ -67,7 +67,7 @@ class Sanitize
       node_name = env[:node_name]
       
       if node_name == "script"
-        unless node['src'].include? "ext.nicovideo.jp" || "source.pixiv.net"
+        unless node['src'].include?("ext.nicovideo.jp") || node['src'].include?("source.pixiv.net")
           node = node.replace(CGI.escapeHTML(node.to_s))
           {:whitelist_nodes => [node]}
         end
