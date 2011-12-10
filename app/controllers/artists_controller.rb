@@ -13,7 +13,7 @@ class ArtistsController < ApplicationController
     if @artist.nil?
       redirect_to artists_path, :alert => "ご指定のアーティストは見つかりませんでした"
     else
-      @works = @artist.works.limit(5)
+      @works = @artist.works.order('created_at DESC').limit(5)
     end
   end
 
