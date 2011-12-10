@@ -18,6 +18,10 @@ class Offer < ActiveRecord::Base
   scope :accepted, where("status = ?", ACCEPTED)
   scope :rejected, where("status = ?", REJECTED)
 
+  scope :offered_by, lambda{|offerer_user_id|
+    where("offerer_user_id = ?", offerer_user_id )
+  }
+
   scope :status_in, lambda{ |status|
     if status.present? && (status =~ /^[0-9]+$/)
       case status.to_i
