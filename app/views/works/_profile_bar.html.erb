@@ -1,6 +1,6 @@
 <div class="row", style='margin-top: 10px'>
   <div class="span16">
-    <h2><%= gravatar_image_tag(current_user.email,:width => "30",:alt => current_user.username) %> <%= current_user.username%>の作品登録</h2>
+    <h2><%= artist_image_tag(current_user, "30") %> <%= current_user.username%>の作品登録</h2>
     <ul class="tabs">
       <li><%= link_to "作品一覧", artist_works_path(:username => current_user.username) %></li>
       <li <%= "class='active'" if current_page?(new_work_path)%>><%= link_to "新規登録", new_work_path %></li>

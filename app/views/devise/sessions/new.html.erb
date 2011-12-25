@@ -28,6 +28,12 @@
             <%= f.password_field :password %>
           </div>
         </div>
+        <div class="clearfix">
+          <%= f.label :remember_me, 'ログインを記憶する' %>
+          <div class="input">
+            <%= f.check_box :remember_me %>
+          </div>
+        </div>
         <div class="actions">
           <%= f.submit "ログイン", :class => "btn primary", :name => "commit" %>
         </div>
@@ -36,5 +42,10 @@
   </div>
   <div class="span6">
     <%= render :partial => "devise/shared/links" %>
+    <div class="page-header">
+      <h4>外部サービスを利用する</h4>
+    </div>
+    <%= render :partial => "services/service_links" %>
+    <p>既にアカウントをお持ちの方はログイン後、「設定」→「外部サービスの接続」から連携させてください</p>
   </div>
 </div>

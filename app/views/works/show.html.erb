@@ -4,7 +4,7 @@
     <h2><%= @work.user.username %></h2>
     <br>
     <p>
-      <%= link_to gravatar_image_tag(@work.user.email,:alt => @work.user.username), path_to_artist(@work.user.username),target:"_blank" %>
+      <%= link_to artist_image_tag(@work.user, ""), path_to_artist(@work.user.username),target:"_blank" %>
     </p>
     <% if user_signed_in? && current_user.id == @work.user.id -%>
       <%= link_to 'プロフィールを編集する', settings_profile_path %><br />

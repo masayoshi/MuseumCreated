@@ -21,4 +21,25 @@ module ApplicationHelper
       content_tag :div, msg, :class => "alert-message info"
     end
   end
+
+  def artist_image_tag(user, size)
+    size = "80px" if size.blank?
+
+    case user.icon_service_name.to_s
+    when "twitter" then
+      if user.services.find_by_provider("twitter")
+        image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
+      else
+        gravatar_image_tag(user.email,:alt => user.name, :width => size)
+      end
+    when "facebook" then
+      if user.services.find_by_provider("facebook")
+        image_tag FbGraph::Page.fetch(user.services.find_by_provider("facebook").uid).picture("large"), :alt => user.name, :width => size
+      else
+        gravatar_image_tag(user.email,:alt => user.name, :width => size)
+      end
+    else
+      gravatar_image_tag(user.email,:alt => user.name, :width => size)
+    end
+  end
 end

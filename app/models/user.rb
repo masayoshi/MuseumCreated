@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :offers, :foreign_key => "offered_user_id", :class_name => 'Offer'
   has_and_belongs_to_many :projects
   has_many :comments, :dependent => :destroy
+  has_many :services, :dependent => :destroy
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  attr_accessible :username, :name, :biography, :url, :genre_id
+  attr_accessible :username, :name, :biography, :url, :genre_id, :icon_service_name
 
   validates :username, :presence => true, :length => { :within => 3..50 }, :uniqueness => true, :format   => { :with => /\A[_a-zA-Z0-9]+\Z/ } # only A..Za..z0..9-_
   validates :name, :length => { :within => 3..100 },:allow_blank => true
@@ -67,6 +68,27 @@ class User < ActiveRecord::Base
   scope :confirmed, where("confirmed_at IS NOT NULL")
   scope :recent_login, confirmed.order("current_sign_in_at desc").limit(10)
   scope :recent_confirmed, confirmed.order("confirmed_at desc").limit(10)
+
+  def apply_omniauth(omniauth)
+    omniauth['info']['email'] ? email =  omniauth['info']['email'] : email = ''
+    omniauth['info']['nickname'] ? uname =  omniauth['info']['nickname'] : uname = ''
+    self.email = email if self.email.blank?
+    self.username = uname if self.username.blank?
+    self.skip_confirmation!
+    connect_service(omniauth)
+  end
+  
+  def connect_service(omniauth)
+    omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
+    omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
+    token = (omniauth['credentials']['token'] rescue nil)
+    secret = (omniauth['credentials']['secret'] rescue nil)
+    services.build(:provider => provider,:uid => uid,:token => token, :secret => secret)
+  end
+
+  def password_required?  
+    (services.empty? || !password.blank?) && super  
+  end
 end
 # == Schema Information
 #
@@ -93,5 +115,6 @@ end
 #  biography              :text
 #  url                    :string(255)
 #  genre_id               :integer
+#  icon_service_name      :string(255)
 #
 

@@ -20,13 +20,13 @@
       <h3>最近参加したアーティスト</h3>
       <p>
         <% @recent_confirmed_users.each do |user| -%>
-          <%= link_to gravatar_image_tag(user.email ,:class => "gravatar", :width=>"50",:alt => user.username), path_to_artist(user.username), rel:"twipsy", title:user.name %>
+          <%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel:"twipsy", title:user.name %>
         <% end -%>
       </p>
       <h3>最近ログインしたアーティスト</h3>
       <p>
         <% @recent_login_users.each do |user| -%>
-          <%= link_to gravatar_image_tag(user.email ,:class => "gravatar",:width=>"50",:alt => user.username), path_to_artist(user.username), rel:"twipsy", title:user.name  %>
+          <%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel:"twipsy", title:user.name  %>
         <% end -%>
       </p>
     </div>

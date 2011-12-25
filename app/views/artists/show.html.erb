@@ -2,9 +2,10 @@
 <div class="row", style='margin-top: 10px'>
   <div class="span5 columns">
     <h2><%= @artist.username %></h2>
+    <h3><%= @artist.name %></h3> 
     <br>
     <p>
-      <%= link_to gravatar_image_tag(@artist.email,:alt => @artist.username), @artist.username %>
+      <%= link_to artist_image_tag(@artist,""), @artist.username %>
     </p>
     <% if user_signed_in? && current_user.id == @artist.id -%>
       <%= link_to 'プロフィールを編集する', settings_profile_path %><br />

@@ -8,7 +8,7 @@
     <% @artists.each do |artist| %>
       <div class="row">
         <div class="span2">
-          <%= link_to gravatar_image_tag(artist.email ,:alt => artist.username), path_to_artist(artist.username) %>
+          <%= link_to artist_image_tag(artist, ""), path_to_artist(artist.username) %>
         </div>
         <div class="span8">
           <h4><%= link_to artist.username, path_to_artist(artist.username) %>

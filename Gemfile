@@ -12,6 +12,11 @@ gem 'sanitize'
 gem 'contact_us'
 gem 'feedzirra'
 gem 'authbuttons-rails'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-facebook'
+gem 'twitter'
+gem 'fb_graph'
 
 # For Heroku
 group :production do

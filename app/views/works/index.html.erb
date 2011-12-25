@@ -1,7 +1,7 @@
 <% @title = "Works" -%>
 <div class="page-header", style="margin-top: 10px">
   <% if params[:username].present? -%>
-    <h2><%= gravatar_image_tag(User.find_by_username(params[:username]).email,:width => "30",:alt => params[:username]) %> <%= link_to params[:username], path_to_artist(params[:username]) %><small> の作品一覧</small></h2>
+    <h2><%= artist_image_tag(User.find_by_username(params[:username]),"30px") %> <%= link_to params[:username], path_to_artist(params[:username]) %><small> の作品一覧</small></h2>
   <% else -%>
     <h2>Works List<small> アーティストが登録した作品一覧です</small></h2>
   <% end -%>
@@ -24,7 +24,7 @@
           </blockquote>
         <% end -%>
       </p>
-      <p>Created by <%= link_to gravatar_image_tag(work.user.email ,:alt => work.user.username, :width => "20px"), path_to_artist(work.user.username) %> <%= link_to_artist work.user.username %> at <%= work.created_at %>
+      <p>Created by <%= link_to artist_image_tag(work.user ,"20px"), path_to_artist(work.user.username) %> <%= link_to_artist work.user.username %> at <%= work.created_at %>
         <% if user_signed_in? && current_user.id == work.user.id -%>
            | <%= link_to "編集", edit_work_path(work) %> | <%= link_to "削除" ,work_path(work), confirm: '本当に削除しますか？', method: :delete %>
         <% end -%>

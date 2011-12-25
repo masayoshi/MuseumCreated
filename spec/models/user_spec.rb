@@ -28,5 +28,6 @@ end
 #  biography              :text
 #  url                    :string(255)
 #  genre_id               :integer
+#  icon_service_name      :string(255)
 #
 
