@@ -80,7 +80,7 @@ class Sanitize
       node_name = env[:node_name]
 
       if node_name == "iframe"
-        unless node['src'].include? "youtube.com" && "nicovideo.jp"
+        unless node['src'].include?("youtube.com") || node['src'].include?("nicovideo.jp")
           node.unlink
           {:whitelist_nodes => [node]}
         end        

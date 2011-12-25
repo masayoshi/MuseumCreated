@@ -33,6 +33,7 @@ MuseumCreated::Application.routes.draw do
   match "/policy", :to => "pages#policy"
   match "/copyright", :to => "pages#copyright"
   match "/search", :to => "pages#search"
+  match "/help", :to => "pages#help"
 
   root :to => "pages#home"
   
