@@ -21,7 +21,7 @@
         <tbody>
           <% @offers.each do |offer| %>
             <tr>
-              <td><%= link_to gravatar_image_tag(offer.offerer_user.email,:width=>"15",:alt => offer.offerer_user.username) + " " + offer.offerer_user.username , path_to_artist(offer.offerer_user.username),target:"_blank" %></td>
+              <td><%= link_to artist_image_tag(offer.offerer_user ,"15px") + " " + offer.offerer_user.username, path_to_artist(offer.offerer_user.username), target:"_blank" %></td>
               <td><%= link_to offer.title, offer_path(offer.id) %></td>
               <td><%= truncate(offer.description,:length => 80) %></td>
               <td><%= display_status(offer.status) %></td>

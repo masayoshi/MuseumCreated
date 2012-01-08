@@ -1,6 +1,6 @@
 <div class="row", style='margin-top: 10px'>
   <div class="span16">
-    <h2><%= gravatar_image_tag(current_user.email,:width => "30",:alt => current_user.username) %> <%= current_user.username%>のコラボレーション</h2>
+    <h2><%= artist_image_tag(current_user,"30px") %> <%= current_user.username%>のコラボレーション</h2>
     <ul class="tabs">
       <li <%= "class='active'" if current_page?(offers_path) and @offer.blank? %>><%= link_to "受けたオファー一覧", offers_path %></li>
       <li <%= "class='active'" if current_page?(check_offers_path)%>><%= link_to "オファーの回答をチェック", check_offers_path %></li>
@@ -11,6 +11,6 @@
       <% if @project.present? -%>
         <li class='active'><%= link_to "プロジェクト", "#" %></li>
       <% end -%>
-     </ul>
+    </ul>
   </div> 
 </div>

@@ -2,7 +2,7 @@
 <div class="row", style='margin-top: 10px'>
   <div class="span5 columns">
     <h2><%= @artist.username %></h2>
-    <h3><%= @artist.name %></h3> 
+    <h3><%= @artist.name %></h3>
     <br>
     <p>
       <%= link_to artist_image_tag(@artist,""), @artist.username %>
@@ -36,7 +36,7 @@
     <% end -%>
     <br />
   </div>
-  
+
   <div class="span6 columns">
     <h2>Works</h2>
     <%= link_to "新しい作品を登録する", new_work_path if user_signed_in? && @artist.username == current_user.username %>

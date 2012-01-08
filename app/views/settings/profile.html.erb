@@ -11,7 +11,7 @@
           singleField: true,
           singleFieldNode: $('#interest_list')
           });
-        
+
         $("#area_tags").tagit({
           availableTags: <%= User.tag_counts_on(:areas).map(&:name).to_json.html_safe %> ,
           singleField: true,
@@ -109,7 +109,7 @@
           <div class="input">
             <ul id="interest_tags" class="xxlarge" ></ul>
             <%= f.hidden_field :interest_list, :id => "interest_list" %>
-            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野などを記述ください。</span>
+            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野、コラボレーションしたいアーティストなどを記述ください。</span>
           </div>
         </div>
         <div class="clearfix">

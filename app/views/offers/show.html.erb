@@ -3,7 +3,9 @@
   <div class="span5 columns">
     <h2><%= @offer.offerer_user.username %>からのオファー</h2>
     <br>
-    <p><%= link_to gravatar_image_tag(@offer.offerer_user.email,:alt => @offer.offerer_user.username), path_to_artist(@offer.offerer_user.username),target:"_blank" %></p>
+    <p>
+      <%= link_to artist_image_tag(@offer.offerer_user, ""), path_to_artist(@offer.offerer_user.username),target:"_blank" %>
+    </p>
     <h3>自己紹介</h3>
     <p><%= Sanitize.clean( @offer.offerer_user.biography, Sanitize::Config::RELAXED).html_safe %></p>
     <h3>ジャンル</h3>
