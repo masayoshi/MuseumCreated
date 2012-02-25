@@ -33,30 +33,29 @@
       <% end %>
       <%= paginate @artists %>
   </div>
-  
   <div class="span6 columns">
     <h2>条件で絞り込む</h2>
 	<h3>できることで絞り込む</h3>
 	<div>
-      <% tag_cloud(@skills, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+      <% tag_cloud(@skills, %w(css1 css2 css3 css4)) do |tag, css_class| %>
         <%= link_to_add_retrieval_tag(tag.name, "skill", params, css_class) %>
       <% end %>
 	</div>
 	<h3>してほしいことで絞り込む</h3>
 	<div>
-      <% tag_cloud(@interests, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+      <% tag_cloud(@interests, %w(css1 css2 css3 css4)) do |tag, css_class| %>
         <%= link_to_add_retrieval_tag(tag.name, "interest", params, css_class) %>
       <% end %>
 	</div>
 	<h3>活動地域で絞り込む</h3>
 	<div>
-      <% tag_cloud(@areas, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+      <% tag_cloud(@areas, %w(css1 css2 css3 css4)) do |tag, css_class| %>
         <%= link_to_add_retrieval_tag(tag.name, "area", params, css_class) %>
       <% end %>
 	</div>
 	<h3>フリーワードで絞り込む</h3>
 	<div>
-      <% tag_cloud(@free_words, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+      <% tag_cloud(@free_words, %w(css1 css2 css3 css4)) do |tag, css_class| %>
         <%= link_to_add_retrieval_tag(tag.name, "free_word", params, css_class) %>
       <% end %>
 	</div>

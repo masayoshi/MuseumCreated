@@ -37,7 +37,7 @@
   <div class="span6 columns">
     <h2>タグで絞り込む</h2>
     <div>
-      <% tag_cloud(@tags, %w(css1 css2 css3 css4 css5)) do |tag, css_class| %>
+      <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
         <%= link_to_tagged_works(tag.name,params,css_class) %>
       <% end %>
     </div>

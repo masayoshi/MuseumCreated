@@ -9,7 +9,7 @@ module ApplicationHelper
       "#{base_title} | #{@title}"
     end
   end
-  
+
   # Display flash message in twitter-bootstrap
   def display_flash(name,msg)
     case name.to_s
