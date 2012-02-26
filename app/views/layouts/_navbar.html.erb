@@ -11,6 +11,7 @@
         <ul class="nav">
           <li <%= " class='active'" if current_page?(artists_path) %>><%= link_to "<i class='icon-user icon-white'></i>".html_safe + " Artists", artists_path %></li>
           <li <%= " class='active'" if current_page?(works_path) %>><%= link_to "<i class='icon-flag icon-white'></i>".html_safe + " Works", works_path %></li>
+          <li <%= " class='active'" if current_page?(news_path) %>><%= link_to "<i class='icon-bookmark icon-white'></i>".html_safe + " News", news_path %></li>
           <li <%= " class='active'" if current_page?(search_path) %>><%= link_to "<i class='icon-search icon-white'></i>".html_safe + " Search", search_path %></li>
         </ul>
         <%= form_tag(artists_path, method: :get, class: "navbar-search pull-left") do %>

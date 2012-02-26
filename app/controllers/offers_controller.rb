@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 class OffersController < ApplicationController
   before_filter :authenticate_user!
-  
+
   def index
     @offers = current_user.offers.status_in(params[:status]).page(params[:page])
   end
@@ -9,7 +9,7 @@ class OffersController < ApplicationController
   def check
     @offers = current_user.offerings.status_in(params[:status]).page(params[:page])
   end
-  
+
   def show
     unless @offer = Offer.find_by_id(params[:id])
       redirect_to root_path, alert: 'オファーが存在しません'

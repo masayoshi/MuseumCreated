@@ -14,7 +14,8 @@ gem 'omniauth-twitter'
 gem 'omniauth-facebook'
 gem 'twitter'
 gem 'fb_graph'
-gem "twitter-bootstrap-rails", "~> 2.0.1.0"
+gem 'twitter-bootstrap-rails', '~> 2.0.1.0'
+gem 'feedzirra'
 
 # For Heroku
 group :production do

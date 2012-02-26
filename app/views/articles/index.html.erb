@@ -1,0 +1,50 @@
+<% @title = "Articles" %>
+<div class="page-header">
+  <h2>Pick-Up News<small> 注目の記事を独自の視点でピックアップ</small></h2>
+</div>
+<div class="row">
+  <div class="span8">
+    <%= paginate @articles %>
+    <% @articles.each do |article| %>
+      <h3><%= link_to article.title, article.url, target: "_blank" %></h3>
+      <%= article.summary.html_safe %>
+      <hr>
+    <% end %>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <p>アートに関係する話題や、アーティストに役立つ情報などをMuseumCreated.comで独自にピックアップして</p>
+    </div>
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+      new TWTR.Widget({
+        version: 2,
+        type: 'profile',
+        rpp: 9,
+        interval: 30000,
+        width: 'auto',
+        height: 400,
+        theme: {
+          shell: {
+            background: '#BFBFBF',
+            color: '#404040'
+          },
+          tweets: {
+            background: '#ffffff',
+            color: '#404040',
+            links: '#0069D6'
+          }
+        },
+        features: {
+          scrollbar: false,
+          loop: false,
+          live: false,
+          hashtags: true,
+          timestamp: true,
+          avatars: false,
+          behavior: 'all'
+        }
+      }).render().setUser('MuseumCreated').start();
+    </script>
+  </div>
+</div>

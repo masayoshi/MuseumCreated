@@ -22,7 +22,7 @@ class Work < ActiveRecord::Base
     created_by(search_params[:username]).
     all_or_tagged_with(search_params[:tag])
   }
-  
+
 end
 # == Schema Information
 #
