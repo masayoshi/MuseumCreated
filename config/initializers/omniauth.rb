@@ -6,7 +6,7 @@ if Rails.env.development?
 end
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  # provider : twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'  
+  # provider : twitter, 'CONSUMER_KEY', 'CONSUMER_SECRET'
   provider :twitter, 'TPvS53Dgr266nK3EWSxA', 'OfiScfmbbGt9DBDTfNWoPtpQDIlAFPhQOTlsiIo2k'
 
   case Rails.env
