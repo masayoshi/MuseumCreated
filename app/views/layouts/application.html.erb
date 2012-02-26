@@ -9,23 +9,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div class="topbar">
-    <%= render 'layouts/topbar' %>
-  </div> <!-- /topbar -->
-  <div class="container", style='margin-top: 40px'>
-    <% if current_page?(root_path) -%>
-      <%= render 'layouts/top_image' %>
-    <% end -%>
-    <% flash.each do |name, msg| -%>
-      <div class="row", style='margin-top: 10px'>
-      <%= display_flash(name,msg)%>
-      </div>
-    <% end -%>
+  <%= render 'layouts/navbar' %>
+  <div class="container">
+    <%= render 'layouts/message' if flash.present? %>
     <%= yield %>
-  </div> <!-- /container -->
-  <footer>
     <%= render 'layouts/footer' %>
-  </footer> <!-- /footer -->
+  </div> <!-- /container -->
   <%= debug(params) if Rails.env.development? %>
   <%= debug(session) if Rails.env.development? %>
 </body>

@@ -2,9 +2,9 @@
 <%= render 'offers/profile_bar' %>
 
 <div class="row">
-  <div class="span16">
+  <div class="span12">
     <% unless @projects.empty? -%>
-      <table class="zebra-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <td>タイトル</td>
@@ -30,7 +30,7 @@
       </table>
       <%= paginate @projects %>
     <% else -%>
-      <p>進行中のプロジェクトはありません。</p>
+      <p>進行中のプロジェクトはありません</p>
     <% end -%>
   </div>
 </div>

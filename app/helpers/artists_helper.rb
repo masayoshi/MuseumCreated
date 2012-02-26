@@ -21,29 +21,29 @@ module ArtistsHelper
       ("<p><b>絞り込み条件</b>" + keywords_list + "</p>").html_safe
     end
   end
-  
+
   # Return link to tags search.
-  def link_to_add_retrieval_tag(tag_name, tag_type, params, css_class)    
+  def link_to_add_retrieval_tag(tag_name, tag_type, params, css_class)
     retrieval_conditions = { }
-    
+
     if tag_type == "interest"
       retrieval_conditions.store(:interest_tag ,tag_name)
     elsif params[:interest_tag].present?
       retrieval_conditions.store(:interest_tag ,params[:interest_tag] )
     end
-    
+
     if tag_type == "skill"
       retrieval_conditions.store(:skill_tag ,tag_name)
     elsif params[:skill_tag].present?
       retrieval_conditions.store(:skill_tag ,params[:skill_tag] )
     end
-      
+
     if tag_type == "area"
       retrieval_conditions.store(:area_tag ,tag_name)
     elsif params[:area_tag].present?
       retrieval_conditions.store(:area_tag ,params[:area_tag] )
     end
-        
+
     if tag_type == "free_word"
       retrieval_conditions.store(:free_word_tag ,tag_name)
     elsif params[:free_word_tag].present?
@@ -51,13 +51,13 @@ module ArtistsHelper
     end
 
     if params[:genre_id].present?
-      retrieval_conditions.store(:genre_id ,params[:genre_id] )      
+      retrieval_conditions.store(:genre_id ,params[:genre_id] )
     end
-    
+
     if params[:search_word].present?
-      retrieval_conditions.store(:search_word ,params[:search_word] )      
+      retrieval_conditions.store(:search_word ,params[:search_word] )
     end
-    
+
     link_to( tag_name, artists_path(retrieval_conditions), :class => css_class)
   end
 end

@@ -1,6 +1,6 @@
 <%= render 'profile_bar' %>
 <div class="row">
-  <div class="span5 columns">
+  <div class="span4">
     <h2><%= @offer.offerer_user.username %>からのオファー</h2>
     <br>
     <p>
@@ -32,8 +32,8 @@
     <% end -%>
     <br />
   </div>
-  
-  <div class="span11 columns">
+
+  <div class="span8">
     <h2><%= link_to @offer.title, offer_path(@offer.id) %></h2>
     <p>
     <p>Offered at <%= @offer.created_at %></p>
@@ -47,4 +47,4 @@
       <p>このオファーを <%= link_to '受諾する', accept_offer_path(@offer.id), :class=>"btn learge success" %> <%= link_to '拒否する', reject_offer_path(@offer.id),:class=>"btn learge danger" %></p>
     <% end %>
   </div>
-</div> 
+</div>

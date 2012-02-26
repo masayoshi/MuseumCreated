@@ -7,7 +7,7 @@ MuseumCreated::Application.routes.draw do
     end
   end
 
-  resources :feeds
+  # resources :feeds
   resources :works
   resources :offers do
     collection do
@@ -36,7 +36,7 @@ MuseumCreated::Application.routes.draw do
   #devise_for :users do
   #  match "/settings/account", :to => "devise/registrations#edit"
   #end
-  
+
   match "/about", :to => "pages#about"
   match "/policy", :to => "pages#policy"
   match "/copyright", :to => "pages#copyright"
@@ -44,7 +44,7 @@ MuseumCreated::Application.routes.draw do
   match "/help", :to => "pages#help"
 
   root :to => "pages#home"
-  
+
 end
 #== Route Map
 # Generated on 25 Dec 2011 16:22

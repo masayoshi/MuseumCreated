@@ -1,74 +1,84 @@
 <% @title = "Home" %>
 <!-- Top Contents -->
-<section id="about">
-  <div class="page-header">
-    <h2>Welcome to MuseumCreated.com<small> アーティストたちの芸術活動を支援するサイトです</small></h2>
+<div class="row">
+  <div class="span12">
+    <center>
+      <%= image_tag "top#{rand(7)}.jpg" %>
+    </center>
   </div>
-  <div class="row">
-    <div class="span6 columns">
-      <h3>３ステップでミュークリを始めよう！</h3>
-      <ul>
-        <li>アーティスト登録をする</li>
-        <li>コラボレーションしたいアーティストを探す</li>
-        <li>興味のあるアーティストにオファーを送る</li>
-      </ul>
-      <h4><%= link_to "詳しい使い方はこちら", about_path %></h4><br/>
-      <p><%= link_to "今すぐ登録する »", new_user_registration_path ,:class=> "btn" %></p>
-    </div>
-    <div class="span10 columns">
-      <h3>最近参加したアーティスト</h3>
-      <p>
-        <% @recent_confirmed_users.each do |user| -%>
-          <%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel:"twipsy", title:user.name %>
-        <% end -%>
-      </p>
-      <h3>最近ログインしたアーティスト</h3>
-      <p>
-        <% @recent_login_users.each do |user| -%>
-          <%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel:"twipsy", title:user.name  %>
-        <% end -%>
-      </p>
-    </div>
+</div>
+<div class="page-header">
+  <h2>Welcome to MuseumCreated.com<small> アーティストの芸術活動を支援するサイトです</small></h2>
+</div>
+<div class="row">
+  <div class="span4">
+    <h3>３ステップでミュークリを始めよう！</h3>
+    <ul>
+      <li>アーティスト登録をする</li>
+      <li>コラボレーションしたいアーティストを探す</li>
+      <li>興味のあるアーティストにオファーを送る</li>
+    </ul>
+    <h4><%= link_to "詳しい使い方はこちら", about_path %></h4><br/>
+    <p><%= link_to "<i class='icon-music'></i>".html_safe + " 今すぐ登録する »", new_user_registration_path ,class: "btn" %></p>
   </div>
-  <div class="page-header">
+  <div class="span4">
+    <h3>最近参加したアーティスト</h3>
+    <ul class="thumbnails">
+      <% @recent_confirmed_users.each do |user| -%>
+        <li><%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel: "popover", title: user.name, "data-content" => user.biography, class: "thumbnail" %></li>
+      <% end -%>
+    </ul>
+  </div>
+  <div class="span4">
+    <h3>最近ログインしたアーティスト</h3>
+    <ul class="thumbnails">
+      <% @recent_login_users.each do |user| -%>
+        <li><%= link_to artist_image_tag(user,"50px"), path_to_artist(user.username), rel: "popover", title: user.name, "data-content" => user.biography, class: "thumbnail" %></li>
+      <% end -%>
+    </ul>
+  </div>
+</div>
+<div class="page-header">
   <h2>アーティストを探す <small>ジャンルやキーワードでコラボレーションするアーティストを探しましょう</small></h2>
+</div>
+<div class="row">
+  <div class="span5" align="center">
+    <h3>あなたはどんなことができる？</h3>
+    <p>
+    <% tag_cloud(@interests, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, artists_path(interest_tag: tag.name), class: css_class %>
+    <% end %>
+    </p>
   </div>
-  <div class="row">
-    <div class="span2 columns">
-      <h3>ジャンル</h3>
-      <ul class="unstyled">
-        <li><%= link_to "MUSIC", artists_path(:genre_id => 1) %></li>
-        <li><%= link_to "PHOTO", artists_path(:genre_id => 2) %></li>
-        <li><%= link_to "DANCE", artists_path(:genre_id => 3) %></li>
-        <li><%= link_to "FASHION", artists_path(:genre_id => 4) %></li>
-        <li><%= link_to "MOVIE", artists_path(:genre_id => 5) %></li>
-        <li><%= link_to "COMEDY", artists_path(:genre_id => 6) %></li>
-        <li><%= link_to "ILLUSTRATION", artists_path(:genre_id => 7) %></li>
-        <li><%= link_to "Other", artists_path(:genre_id => 8) %></li>
-      </ul>
-    </div>
-    <div class="span7">
-      <h3>あなたはどんなことができる？</h3>
-        <% tag_cloud(@interests, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-          <%= link_to tag.name, artists_path(:interest_tag => tag.name), :class => css_class %>
-        <% end %>
-    </div>
-    <div class="span7">
-      <h3>あなたはなにをしてほしい？</h3>
-      <div class="portlet_tags">
-        <% tag_cloud(@skills, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-          <%= link_to tag.name, artists_path(:skill_tag => tag.name), :class => css_class %>
-        <% end %>
-      </div>
-    </div>
-  </div><!-- /row -->
-  <div class="page-header">
+  <div class="span5" align="center">
+    <h3>あなたはなにをしてほしい？</h3>
+    <p>
+    <% tag_cloud(@skills, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, artists_path(:skill_tag => tag.name), :class => css_class %>
+    <% end %>
+    </p>
   </div>
-  <div class="row">
-    <div class="span8">
-      <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-      <script>
-        new TWTR.Widget({
+  <div class="span2">
+    <h3>どんなジャンル？</h3>
+    <ul class="nav nav-list">
+      <li><%= link_to "<i class='icon-music'></i>".html_safe + " MUSIC", artists_path(:genre_id => 1) %></li>
+      <li><%= link_to "<i class='icon-camera'></i>".html_safe + " PHOTO", artists_path(:genre_id => 2) %></li>
+      <li><%= link_to "<i class='icon-star'></i>".html_safe + " DANCE", artists_path(:genre_id => 3) %></li>
+      <li><%= link_to "<i class='icon-leaf'></i>".html_safe + " FASHION", artists_path(:genre_id => 4) %></li>
+      <li><%= link_to "<i class='icon-film'></i>".html_safe + " MOVIE", artists_path(:genre_id => 5) %></li>
+      <li><%= link_to "<i class='icon-cog'></i>".html_safe + " COMEDY", artists_path(:genre_id => 6) %></li>
+      <li><%= link_to "<i class='icon-pencil'></i>".html_safe + " ILLUSTTLATION", artists_path(:genre_id => 7) %></li>
+      <li><%= link_to "<i class='icon-flag'></i>".html_safe + " Other", artists_path(:genre_id => 8) %></li>
+    </ul>
+  </div>
+</div><!-- /row -->
+<div class="page-header">
+</div>
+<div class="row">
+  <div class="span6">
+    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
+    <script>
+      new TWTR.Widget({
         version: 2,
         type: 'profile',
         rpp: 4,
@@ -76,31 +86,30 @@
         width: 'auto',
         height: 200,
         theme: {
-        shell: {
-        background: '#BFBFBF',
-        color: '#404040'
-        },
-        tweets: {
-        background: '#ffffff',
-        color: '#404040',
-        links: '#0069D6'
-        }
+          shell: {
+            background: '#BFBFBF',
+            color: '#404040'
+          },
+          tweets: {
+            background: '#ffffff',
+            color: '#404040',
+            links: '#0069D6'
+          }
         },
         features: {
-        scrollbar: false,
-        loop: false,
-        live: false,
-        hashtags: true,
-        timestamp: true,
-        avatars: false,
-        behavior: 'all'
+          scrollbar: false,
+          loop: false,
+          live: false,
+          hashtags: true,
+          timestamp: true,
+          avatars: false,
+          behavior: 'all'
         }
-        }).render().setUser('MuseumCreated').start();
-      </script>
-    </div>
-    <div class="span8">
-      <div id="fb-root"></div>
-      <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/MuseumCreatedcom/207156882674562" width="460" show_faces="true" border_color="" stream="false" header="false"></fb:like-box>
-    </div>
+      }).render().setUser('MuseumCreated').start();
+    </script>
   </div>
-</section>
+  <div class="span6">
+    <div id="fb-root"></div>
+    <script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script><fb:like-box href="http://www.facebook.com/pages/MuseumCreatedcom/207156882674562" width="570" show_faces="true" border_color="" stream="false" header="false"></fb:like-box>
+  </div>
+</div>

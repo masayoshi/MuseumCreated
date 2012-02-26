@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h2>パスワード変更</h2>    
+  <h2>パスワード変更</h2>
 </div>
 <div class="row">
-  <div class="span10">
-    <%= form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f| %>
-      <% if resource.errors.any? -%>
-        <div class="alert-message block-message error">
-          <h3><%= "#{resource.errors.count}つのエラーのため実行できませんでした。" %></h3>
+  <div class="span8">
+    <%= form_for resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: "form-horizontal" } do |f| %>
+      <% if resource.errors.any? %>
+        <div class="alert alert-block alert-error fade in">
+          <h3><%= "#{resource.errors.count}つのエラーのため実行できませんでした" %></h3>
           <ul>
             <% resource.errors.full_messages.each do |msg| -%>
               <li><%= msg %></li>
@@ -16,25 +16,25 @@
       <% end -%>
       <%= f.hidden_field :reset_password_token %>
       <fieldset>
-        <div class="clearfix">
-          <%= f.label :password, '新しいパスワード' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :password, '新しいパスワード', class: "control-label" %>
+          <div class="controls">
             <%= f.password_field :password %>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :password_confirmation, '新しいパスワード確認' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :password_confirmation, '新しいパスワード確認', class: "control-label" %>
+          <div class="controls">
             <%= f.password_field :password_confirmation %>
           </div>
         </div>
-        <div class="actions">
-          <%= f.submit "パスワード変更", :class => "btn primary", :name => "commit" %>
+        <div class="form-actions">
+          <%= f.submit "パスワード変更", class: "btn btn-primary", name: "commit" %>
         </div>
       </fieldset>
-    <% end -%>
+    <% end %>
   </div>
-  <div class="span6">
+  <div class="span4">
     <%= render :partial => "devise/shared/links" %>
   </div>
 </div>

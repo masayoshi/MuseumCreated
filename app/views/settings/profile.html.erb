@@ -27,11 +27,11 @@
 </script>
 <%= render 'settings/profile_bar' %>
 <div class="row">
-  <div class="span12">
-    <%= form_for(@user, :url => settings_update_path , :html => { :method => :put }) do |f| %>
+  <div class="span8">
+    <%= form_for @user, url: settings_update_path, html: {method: :put, class: "form-horizontal"} do |f| %>
       <% if @user.errors.any? -%>
-        <div class="alert-message block-message error">
-          <h3><%= "#{@user.errors.count}つのエラーのため保存できませんでした。" %></h3>
+        <div class="alert alert-block alert-error fade in">
+          <h3><%= "#{@user.errors.count}つのエラーのため保存できませんでした" %></h3>
           <ul>
             <% @user.errors.full_messages.each do |msg| -%>
               <li><%= msg %></li>
@@ -40,120 +40,112 @@
         </div>
       <% end -%>
       <fieldset>
-        <div class="clearfix">
-          <%= f.label :name, 'アイコン' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :name, 'アイコン', class: "control-label" %>
+          <div class="controls">
             <%= artist_image_tag(current_user,"") %>
             <% if current_user.icon_service_name.blank? || current_user.services.find_by_provider(current_user.icon_service_name).blank? %>
-            <%= link_to "アイコンの変更(Gravatar)","http://gravatar.com/emails/", :target => "_blank" %>
-            <span class="help-block">MuseumCreated.comでは、<%= link_to "Gravatar","http://ja.gravatar.com/", :target => "_blank"%>を用いてアイコン表示をしています。<br />まだGravatarのアカウントをお持ちでない方は<%= link_to "こちら","http://ja.gravatar.com/site/signup/", :target => "_blank"%>から登録してください。また、外部のサービス(Facebook,Twitter)のプロフィール画像を利用する場合は、<%= link_to "こちら", settings_services_path %>から連携してください。</span><% end %>
-            <% if current_user.services.present? %>
-              <ul class="inputs-list">
-                <li>
-                  <label>
-                    <input id="icon_service_name" <%= "checked" if current_user.icon_service_name.blank? %> type="radio" name="user[icon_service_name]" value="">
-                    <span>Gravater(デフォルト)</span>
-                  </label>
-                </li>
-              <% if current_user.services.find_by_provider("twitter").present? %>
-                <li>
-                  <label>
-                    <input id="icon_service_name" <%= "checked" if current_user.icon_service_name == "twitter" %> type="radio" name="user[icon_service_name]" value="twitter">
-                    <span>Twitterのプロフィール画像を使う</span>
-                  </label>
-                </li>
-              <% end %>
-              <% if current_user.services.find_by_provider("facebook").present? %>
-                <li>
-                  <label>
-                    <input id="icon_service_name" <%= "checked" if current_user.icon_service_name == "facebook" %> type="radio" name="user[icon_service_name]" value="facebook">
-                    <span>Facebookのプロフィール画像を使う</span>
-                  </label>
-                </li>
-              <% end %>
-              </ul>
+              <%= link_to "アイコンの変更(Gravatar)","http://gravatar.com/emails/", :target => "_blank" %>
+              <p class="help-block">MuseumCreated.comでは、<%= link_to "Gravatar","http://ja.gravatar.com/", :target => "_blank"%>を用いてアイコン表示をしています。<br />まだGravatarのアカウントをお持ちでない方は<%= link_to "こちら","http://ja.gravatar.com/site/signup/", :target => "_blank"%>から登録してください。また、外部のサービス(Facebook,Twitter)のプロフィール画像を利用する場合は、<%= link_to "こちら", settings_services_path %>から連携してください。</p><% end %>
+          <% if current_user.services.present? %>
+            <label class="radio">
+              <input id="icon_service_name" <%= "checked" if current_user.icon_service_name.blank? %> type="radio" name="user[icon_service_name]" value="">
+              Gravater(デフォルト)
+            </label>
+            <% if current_user.services.find_by_provider("twitter").present? %>
+              <label class="radio">
+                <input id="icon_service_name" <%= "checked" if current_user.icon_service_name == "twitter" %> type="radio" name="user[icon_service_name]" value="twitter">
+                Twitterのプロフィール画像を使う
+              </label>
             <% end %>
+            <% if current_user.services.find_by_provider("facebook").present? %>
+              <label class="radio">
+                <input id="icon_service_name" <%= "checked" if current_user.icon_service_name == "facebook" %> type="radio" name="user[icon_service_name]" value="facebook">
+                Facebookのプロフィール画像を使う
+              </label>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :name, '名前', class: "control-label" %>
+        <div class="controls">
+          <%= f.text_field :name %>
+          <p class="help-block">みんなが見つけられるように、普段使っているアーティスト名を入力しましょう</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :url, 'ホームページ', class: "control-label" %>
+        <div class="controls">
+          <%= f.url_field :url %>
+          <p class="help-block">ホームページやブログをお持ちでしたら、ここにアドレスを入力してください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :genre, 'ジャンル', class: "control-label" %>
+        <div class="controls">
+          <%= f.collection_select :genre_id, Genre.all, :id, :name %>
+          <p class="help-block">あなたがアーティスト活動をしているジャンルを選んでください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :skill_list, 'できること', class: "control-label" %>
+        <div class="controls">
+          <ul id="skill_tags"></ul>
+          <%= f.hidden_field :skill_list, id: "skill_list" %>
+          <p class="help-block">あなたができること、提供できる技術、スキルを記述ください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :interest_list, 'してほしいこと', class: "control-label" %>
+        <div class="controls">
+          <ul id="interest_tags"></ul>
+          <%= f.hidden_field :interest_list, id: "interest_list" %>
+          <p class="help-block">あなたがしてほしいこと、コラボレーションしたい分野、コラボレーションしたいアーティストなどを記述ください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :area_list, '活動地域', class: "control-label" %>
+        <div class="controls">
+          <ul id="area_tags"></ul>
+          <%= f.hidden_field :area_list, id: "area_list" %>
+          <p class="help-block">あなたの活動地域を記述ください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :free_word_list, 'フリーワード', class: "control-label" %>
+        <div class="controls">
+          <ul id="free_word_tags"></ul>
+          <%= f.hidden_field :free_word_list, id: "free_word_list" %>
+          <p class="help-block">あなたに関することを自由に記述ください</p>
+        </div>
+      </div>
+      <div class="control-group">
+        <%= f.label :biography, '自己紹介', class: "control-label" %>
+        <div class="controls">
+          <%= f.text_area :biography, class: "input-xxlarge", rows: "20", id: "ckeditor" %>
+          <script type="text/javascript">
+            $(function() {
+                CKEDITOR.config.toolbar = [
+                ,['FontSize'],['TextColor','BGColor'],['Bold','Italic','Underline','Strike']
+                ,['NumberedList','BulletedList','-','Outdent','Indent','Blockquote']
+                ,['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],'/'
+                ,['Link','Unlink']
+                ,['Image','HorizontalRule','Smiley'],['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat']
+                ,['Source','-','ShowBlocks','Preview']
+                ];
+                CKEDITOR.config.language = 'ja';
+                CKEDITOR.config.width  = '530px';
+                CKEDITOR.config.height = '300px';
+                CKEDITOR.config.resize_enabled = false;
+                CKEDITOR.replace('ckeditor');
+                });
+</script>
+<p class="help-block">500文字以内で自己紹介してください</p>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :name, '名前' %>
-          <div class="input">
-            <%= f.text_field :name %>
-            <span class="help-block">みんなが見つけられるように、普段使っているアーティスト名を入力しましょう。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :url, 'ホームページ' %>
-          <div class="input">
-            <%= f.url_field :url %>
-            <span class="help-block">ホームページやブログをお持ちでしたら、ここにアドレスを入力してください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :genre, 'ジャンル' %>
-          <div class="input">
-            <%= f.collection_select :genre_id, Genre.all, :id, :name %>
-            <span class="help-block">あなたがアーティスト活動をしているジャンルを選んでください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :skill_list, 'できること' %>
-          <div class="input">
-            <ul id="skill_tags" class="xxlarge" ></ul>
-            <%= f.hidden_field :skill_list, :id => "skill_list" %>
-            <span class="help-block">あなたができること、提供できる技術、スキルを記述ください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :interest_list, 'してほしいこと' %>
-          <div class="input">
-            <ul id="interest_tags" class="xxlarge" ></ul>
-            <%= f.hidden_field :interest_list, :id => "interest_list" %>
-            <span class="help-block">あなたがしてほしいこと、コラボレーションしたい分野、コラボレーションしたいアーティストなどを記述ください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :area_list, '活動地域' %>
-          <div class="input">
-            <ul id="area_tags" class="xxlarge" ></ul>
-            <%= f.hidden_field :area_list, :id => "area_list" %>
-            <span class="help-block">あなたの活動地域を記述ください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :free_word_list, 'フリーワード' %>
-          <div class="input">
-            <ul id="free_word_tags" class="xxlarge" ></ul>
-            <%= f.hidden_field :free_word_list, :id => "free_word_list" %>
-            <span class="help-block">あなたに関することを自由に記述ください。</span>
-          </div>
-        </div>
-        <div class="clearfix">
-          <%= f.label :biography, '自己紹介' %>
-          <div class="input">
-            <%= f.text_area :biography, :class => "xxlarge", :rows => "20", :id => "ckeditor" %>
-            <script type="text/javascript">
-              $(function() {
-              CKEDITOR.config.toolbar = [
-              ,['FontSize'],['TextColor','BGColor'],['Bold','Italic','Underline','Strike']
-              ,['NumberedList','BulletedList','-','Outdent','Indent','Blockquote']
-              ,['JustifyLeft','JustifyCenter','JustifyRight','JustifyBlock'],'/'
-              ,['Link','Unlink']
-              ,['Image','HorizontalRule','Smiley'],['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat']
-              ,['Source','-','ShowBlocks','Preview']
-              ];
-              CKEDITOR.config.language = 'ja';
-              CKEDITOR.config.width  = '530px';
-              CKEDITOR.config.height = '300px';
-              CKEDITOR.config.resize_enabled = false;
-              CKEDITOR.replace('ckeditor');
-              });
-            </script>
-            <span class="help-block">500文字以内で自己紹介してください。</span>
-          </div>
-        </div>
-        <div class="actions">
-          <%= f.submit "更新", :class => "btn primary", :name => "commit" %>
+        <div class="form-actions">
+          <%= f.submit "更新", class: "btn btn-primary", name: "commit" %>
         </div>
       </fieldset>
     <% end -%>

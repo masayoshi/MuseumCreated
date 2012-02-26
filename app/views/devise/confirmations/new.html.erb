@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h2>アカウント登録確認メールの再送</h2>    
+  <h2>アカウント登録確認メールの再送</h2>
 </div>
 <div class="row">
-  <div class="span10">
-    <%= form_for(resource, :as => resource_name, :url => confirmation_path(resource_name), :html => { :method => :post }) do |f| %>
+  <div class="span8">
+    <%= form_for resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post, class: "form-horizontal" } do |f| %>
       <% if resource.errors.any? -%>
-        <div class="alert-message block-message error">
-          <h3><%= "#{resource.errors.count}つのエラーのため実行できませんでした。" %></h3>
+        <div class="alert alert-block alert-error fade in">
+          <h3><%= "#{resource.errors.count}つのエラーのため実行できませんでした" %></h3>
           <ul>
             <% resource.errors.full_messages.each do |msg| -%>
               <li><%= msg %></li>
@@ -15,19 +15,19 @@
         </div>
       <% end -%>
       <fieldset>
-        <div class="clearfix">
-          <%= f.label :email, 'メールアドレス' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :email, 'メールアドレス', class: "control-label" %>
+          <div class="controls">
             <%= f.email_field :email %>
           </div>
         </div>
-        <div class="actions">
-          <%= f.submit "アカウント登録確認メールの再送", :class => "btn primary", :name => "commit" %>
+        <div class="form-actions">
+          <%= f.submit "アカウント登録確認メールの再送", class: "btn btn-primary", name: "commit" %>
         </div>
       </fieldset>
     <% end -%>
   </div>
-  <div class="span6">
+  <div class="span4">
     <%= render :partial => "devise/shared/links" %>
   </div>
 </div>

@@ -1,7 +1,7 @@
 <% @title = "Your Offers" -%>
 <%= render 'profile_bar' %>
 <div class="row">
-  <div class="span16">
+  <div class="span12">
     <p>
       <%= link_to "すべて(#{current_user.offers.count})", :status => nil %> | 
       <%= link_to "未回答のオファー(#{current_user.offers.unevaluated.count})", :status => Offer::UNEVALUATED %> | 
@@ -9,7 +9,7 @@
       <%= link_to "拒否したオファー(#{current_user.offers.rejected.count})", :status => Offer::REJECTED %>
     </p>
     <% unless @offers.empty? -%>
-      <table class="zebra-striped">
+      <table class="table table-striped">
         <thead>
           <tr>
             <td>Artist</td>

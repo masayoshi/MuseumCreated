@@ -1,9 +1,9 @@
 <%= render 'settings/profile_bar' %>
 <div class="row">
-  <div class="span12">
-    <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put }) do |f| %>
+  <div class="span8">
+    <%= form_for resource, as: resource_name, url: registration_path(resource_name), html: {method: :put, class: "form-horizontal"} do |f| %>
       <% if resource.errors.any? -%>
-        <div class="alert-message block-message error">
+        <div class="alert alert-block alert-error fade in">
           <h3><%= "#{resource.errors.count}つのエラーのため保存できませんでした。" %></h3>
           <ul>
             <% resource.errors.full_messages.each do |msg| -%>
@@ -13,49 +13,48 @@
         </div>
       <% end -%>
       <fieldset>
-        <div class="clearfix">
-          <%= f.label :username, 'ユーザ名' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :username, 'ユーザ名', class: "control-label" %>
+          <div class="controls">
             <%= f.text_field :username %>
-            <span class="help-block">ユーザ名にスペース(空白)は利用できません。</span>
+            <p class="help-block">ユーザ名にスペース(空白)は利用できません。</p>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :email, 'メールアドレス' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :email, 'メールアドレス', class: "control-label" %>
+          <div class="controls">
             <%= f.email_field :email %>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :password, 'パスワード変更' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :password, 'パスワード変更', class: "control-label" %>
+          <div class="controls">
             <%= f.password_field :password %>
-            <span class="help-block">変更しない場合は空欄のままにしておいてください</span>
+            <p class="help-block">変更しない場合は空欄のままにしておいてください</p>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :password_confirmation, 'パスワード変更確認' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :password_confirmation, 'パスワード変更確認', class: "control-label" %>
+          <div class="controls">
             <%= f.password_field :password_confirmation %>
           </div>
         </div>
-        <div class="clearfix">
-          <%= f.label :current_password, '現在のパスワード' %>
-          <div class="input">
+        <div class="control-group">
+          <%= f.label :current_password, '現在のパスワード', class: "control-label" %>
+          <div class="controls">
             <%= f.password_field :current_password %>
-            <span class="help-block">ユーザ情報を変更するためには、現在のパスワードが必要です</span>
+            <p class="help-block">ユーザ情報を変更するためには、現在のパスワードが必要です</p>
           </div>
         </div>
-        <div class="actions">
-          <%= f.submit "更新", :class => "btn primary", :name => "commit" %>
+        <div class="form-actions">
+          <%= f.submit "更新", class: "btn btn-primary", name: "commit" %>
         </div>
       </fieldset>
     <% end -%>
-    <p><%= link_to "このアカウントを削除する", registration_path(resource_name), :confirm => "本当に退会してよろしいですか?", :method => :delete %></p>
+    <p><%= link_to "このアカウントを削除する", registration_path(resource_name), confirm: "本当に退会してよろしいですか?", method: :delete, class: "btn btn-danger" %></p>
   </div>
   <div class="span4">
     <h2>アカウント情報</h2>
     <p>この情報はあなたのログインアカウントに関する情報です。ユーザ名の変更やメールアドレスの変更、パスワードの変更が行えます。</p>
   </div>
 </div>
-

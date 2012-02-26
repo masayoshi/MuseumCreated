@@ -2,10 +2,10 @@
 <%= render 'offers/profile_bar' %>
 
 <div class="row">
-  <div class="span12">
+  <div class="span8">
     <h2><%= @project.title %></h2>
     <p><%= @project.description %></p>
-    <%= link_to 'プロジェクト情報の更新', edit_project_path(@project) %>
+    <%= link_to 'プロジェクト情報の更新', edit_project_path(@project), class: "btn" %>
   </div>
   <div class="span4">
     <h3>コラボメイト</h3>
@@ -19,33 +19,33 @@
 <div class="page-header">
 </div>
 <div class="row">
-  <div class="span2">
+  <div class="span3">
     <p><%= link_to artist_image_tag(current_user,"30px") + current_user.username, path_to_artist(current_user.username), target:"_blank" %></p>
   </div>
-  <div class="span14">
+  <div class="span9">
     <%= render 'comment_form' %>
   </div>
 </div>
 <div class="page-header", style="margin-top: 10px">
 </div>
 <div class="row">
-  <div class="span16">
+  <div class="span12">
     <% @comments.each do |comment| %>
       <div class="row">
-        <div class="span14">
+        <div class="span9">
           <p><%= comment.body %></p>
         </div>
-        <div class="span2">
+        <div class="span3">
           <p><%= link_to artist_image_tag(comment.user,"50px"), path_to_artist(comment.user.username), target:"_blank" %></p>
-          <p><%= comment.created_at %></p>
+          <p><%= comment.created_at.to_s(:db) %></p>
           <% if comment.user_id == current_user.id -%>
-          <p><%= link_to "削除", del_comment_project_path(@project,:comment_id => comment.id) %></p>
+          <p><%= link_to "コメントを削除する", del_comment_project_path(@project,:comment_id => comment.id), class: "btn btn-small" %></p>
           <% end -%>
         </div>
       </div>
       <div class="page-header", style="margin-top: 10px">
       </div>
     <% end %>
-    <%= paginate @comments %>    
-  </div> 
+    <%= paginate @comments %>
+  </div>
 </div>
