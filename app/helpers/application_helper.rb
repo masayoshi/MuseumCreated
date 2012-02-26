@@ -29,14 +29,15 @@ module ApplicationHelper
     case user.icon_service_name.to_s
     when "twitter" then
       if user.services.find_by_provider("twitter")
-        #image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
-        gravatar_image_tag(user.email,:alt => user.name, :width => size)
+        image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
+        #gravatar_image_tag(user.email,:alt => user.name, :width => size)
       else
         gravatar_image_tag(user.email,:alt => user.name, :width => size)
       end
     when "facebook" then
       if user.services.find_by_provider("facebook")
-        image_tag FbGraph::Page.fetch(user.services.find_by_provider("facebook").uid).picture("large"), :alt => user.name, :width => size
+        image_tag "http://graph.facebook.com/#{user.services.find_by_provider("facebook").uid}/picture?type=square", alt: user.name, width: size
+        #image_tag FbGraph::Page.fetch(user.services.find_by_provider("facebook").uid).picture("large"), :alt => user.name, :width => size
         # gravatar_image_tag(user.email,:alt => user.name, :width => size)
       else
         gravatar_image_tag(user.email,:alt => user.name, :width => size)
