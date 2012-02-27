@@ -12,6 +12,7 @@ task :tweet_random_article => :environment do
     config.oauth_token = ENV['TWITTER_OAUTH_TOKEN']
     config.oauth_token_secret = ENV['TWITTER_OAUTH_TOKEN_SECRET']
   end
+  Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
   article = Article.random_in_a_day
   Twitter.update(article.title + " " + article.url + " " + "http://museum-created.heroku.com/news")
   puts "done."
