@@ -19,6 +19,7 @@ class Article < ActiveRecord::Base
   paginates_per 10
 
   default_scope order: 'created_at DESC'
+  scope :last_24hours, where("created_at >= ?", 1.days.ago)
 
   def self.fetch_hatena_bookmark
     return unless feed = Feedzirra::Feed.fetch_and_parse(MUCRE_HATENA_BOOKMARK_FEED_URL)
@@ -27,5 +28,10 @@ class Article < ActiveRecord::Base
         self.create(title: entry.title, url: entry.url, summary: entry.content)
       end
     end
+  end
+
+  def self.random_in_a_day
+    offset = rand(self.last_24hours.count)
+    self.first(offset: offset)
   end
 end
