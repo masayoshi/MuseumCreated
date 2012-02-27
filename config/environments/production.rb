@@ -60,4 +60,7 @@ MuseumCreated::Application.configure do
 
   # Configuration for Devise in Production Environment
   config.action_mailer.default_url_options = { :host => 'museum-created.heroku.com' }
+
+  # Apigee Add-on
+  Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
 end
