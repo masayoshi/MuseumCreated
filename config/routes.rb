@@ -3,23 +3,23 @@ MuseumCreated::Application.routes.draw do
   resources :articles, only: [:index, :show]
   match "/news", :to => "articles#index"
 
-  resources :projects do
-    member do
-      post :add_comment
-      get :del_comment
-    end
-  end
+  #resources :projects do
+    #member do
+      #post :add_comment
+      #get :del_comment
+    #end
+  #end
 
   # resources :feeds
   resources :works
-  resources :offers do
-    collection do
-      get :check
-    end
-    member do
-      get :accept, :reject
-    end
-  end
+  #resources :offers do
+    #collection do
+      #get :check
+    #end
+    #member do
+      #get :accept, :reject
+    #end
+  #end
 
   resources :locations
 
