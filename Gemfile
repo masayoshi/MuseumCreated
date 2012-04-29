@@ -23,6 +23,7 @@ gem 'therubyracer'
 # For Heroku
 group :production do
   gem 'pg'
+  gem 'thin'
   gem 'therubyracer-heroku'
 end
 
