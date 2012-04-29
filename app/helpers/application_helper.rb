@@ -29,8 +29,8 @@ module ApplicationHelper
     case user.icon_service_name.to_s
     when "twitter" then
       if user.services.find_by_provider("twitter")
-        image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
-        #gravatar_image_tag(user.email,:alt => user.name, :width => size)
+        #image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
+        gravatar_image_tag(user.email,:alt => user.name, :gravatar => {:size => size})
       else
         gravatar_image_tag(user.email,:alt => user.name, :gravatar => {:size => size})
       end
