@@ -18,6 +18,8 @@ gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootst
 gem 'feedzirra'
 gem 'geocoder'
 gem 'gmaps4rails'
+gem 'therubyracer'
+gem 'jquery-rails'
 
 # For Heroku
 group :production do
@@ -33,8 +35,6 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
-
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
@@ -45,5 +45,4 @@ group :development, :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'faker'
   gem 'factory_girl_rails'
-  gem 'therubyracer'
 end
