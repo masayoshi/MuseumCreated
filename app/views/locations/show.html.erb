@@ -1,0 +1,19 @@
+<%= render 'settings/profile_bar' %>
+<div class="row">
+  <div class="span12">
+    <p>
+    <b>活動場所:</b>
+    <%= @location.address %>
+    </p>
+    <p>
+    <b>活動内容:</b>
+    <%= @location.note %>
+    </p>
+    <%= static_google_map(@location) %>
+    <p>
+    <b>アーティスト:</b>
+    <%= link_to @location.user.name, path_to_artist(@location.user.username) %>
+    </p>
+    <%= link_to '編集', edit_location_path(@location), class: "btn" if @location.user == current_user %>
+  </div>
+</div>

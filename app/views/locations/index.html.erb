@@ -1,0 +1,33 @@
+<% @title = "Locations" -%>
+<div class="page-header">
+  <h2>Local Artists<small> あなたの身近なアーティストを探してください</small></h2>
+  <%= link_to "新しい活動地域を登録する", settings_locations_path if user_signed_in? %>
+  <%= search_tag(params) %>
+</div>
+<div class="row">
+  <% if @locations.present? %>
+    <div class="span12" align="center">
+      <div>
+      <%= gmaps4rails(@json) %>
+    </div>
+      <%= "<h2>#{params[:search]}の近くのアーティスト</h2>".html_safe if params[:search].present? %>
+      <table class="table">
+        <tr>
+          <th>アーティスト</th>
+          <th>活動場所</th>
+          <th>活動内容</th>
+        </tr>
+        <% @locations.each do |location| %>
+          <tr>
+            <td><%= link_to location.user.username, path_to_artist(location.user.username) %></td>
+            <td><%= location.address %></td>
+            <td><%= location.note %></td>
+          </tr>
+        <% end -%>
+      </table>
+      <div class="page-header", style="margin-top: 10px">
+      </div>
+    <% else %>
+      <div class="span12"><p>条件に該当する作品はありません</p></div>
+    <% end %>
+  </div>
