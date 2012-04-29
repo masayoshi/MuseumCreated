@@ -29,8 +29,8 @@ module ApplicationHelper
     case user.icon_service_name.to_s
     when "twitter" then
       if user.services.find_by_provider("twitter")
-        #image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
-        gravatar_image_tag(user.email,:alt => user.name, :width => size)
+        image_tag Twitter.profile_image( user.services.find_by_provider("twitter").uid, :size => "bigger"), :alt => user.name, :width => size
+        #gravatar_image_tag(user.email,:alt => user.name, :width => size)
       else
         gravatar_image_tag(user.email,:alt => user.name, :width => size)
       end
@@ -45,5 +45,9 @@ module ApplicationHelper
     else
       gravatar_image_tag(user.email,:alt => user.name, :width => size)
     end
+  end
+
+  def static_google_map(location)
+    image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{location.latitude}%2C#{location.longitude}"
   end
 end

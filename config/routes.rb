@@ -21,6 +21,8 @@ MuseumCreated::Application.routes.draw do
     end
   end
 
+  resources :locations
+
   match "/artists", :to => "artists#index"
   match "/artists/:username", :to => "artists#show"
   match "/artists/:username/works", :to => "works#index", :as => "artist_works"
@@ -28,6 +30,7 @@ MuseumCreated::Application.routes.draw do
   get "/settings/profile"
   put "/settings/update"
   match "/settings/services" => "services#index"
+  match "/settings/locations" => "locations#new"
 
   devise_for :users, :controllers => { :registrations =>'registrations' }   do
     match "/settings/account", :to => "devise/registrations#edit"

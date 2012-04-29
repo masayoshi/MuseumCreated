@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120226205002) do
+ActiveRecord::Schema.define(:version => 20120422205242) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -44,6 +44,16 @@ ActiveRecord::Schema.define(:version => 20120226205002) do
   end
 
   add_index "genres", ["name"], :name => "index_genres_on_name", :unique => true
+
+  create_table "locations", :force => true do |t|
+    t.string   "address"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.string   "note"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "offers", :force => true do |t|
     t.string   "title"
