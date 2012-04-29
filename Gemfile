@@ -23,7 +23,6 @@ gem 'gmaps4rails'
 group :production do
   gem 'pg'
   gem 'thin'
-  gem 'therubyracer-heroku'
 end
 
 # Gems used only for assets and not required
