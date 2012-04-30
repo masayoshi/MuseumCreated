@@ -14,6 +14,7 @@ class ArtistsController < ApplicationController
       redirect_to artists_path, :alert => "ご指定のアーティストは見つかりませんでした"
     else
       @works = @artist.works.order('created_at DESC').limit(5)
+      @events = @artist.events.order('start_time DESC').limit(3)
       @json = @artist.locations.to_gmaps4rails
     end
   end

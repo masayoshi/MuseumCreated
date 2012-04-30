@@ -1,0 +1,47 @@
+<% @title = "Events" -%>
+<div class="page-header">
+  <% if params[:username].present? -%>
+    <h2><%= artist_image_tag(User.find_by_username(params[:username]),"30px") %> <%= link_to params[:username], path_to_artist(params[:username]) %><small> のイベント一覧</small></h2>
+  <% else -%>
+    <h2>Events List<small> アーティストのイベント一覧です</small></h2>
+    <%= form_tag events_path,class: "well form-search", method: :get do %>
+      <%= text_field_tag :search, params[:search], class: "input-xxlearge search-query", placeholder: "例: 渋谷、伊勢佐木町"%>
+      <%= submit_tag "場所からイベントを探す", name: nil, class: "btn" %>
+    <% end %>
+  <% end -%>
+  <%= link_to "新しいイベントを登録する", new_event_path if user_signed_in? %>
+</div>
+<div class="row">
+  <div class="span12">
+    <% if @events.present? %>
+      <div align="center">
+        <%= gmaps4rails(@json) %>
+      </div>
+      <%= "<h2>#{params[:search]}の近くのイベント</h2>".html_safe if params[:search].present? %>
+      <div class="page-header", style="margin-top: 10px"></div>
+      <% @events.each do |event| %>
+        <h4><%= link_to event.title, event_path(event) %></h4>
+        <p>
+        <%= link_to event.url, event.url, :target => "_blank" if event.url.present? %><br />
+        <% if event.tag_list.present? %>
+          <b>タグ: </b><%= event.tag_list %><br />
+        <% end %>
+        <% if event.description.present? -%>
+          <blockquote>
+            <p><%= event.description %></p>
+          </blockquote>
+        <% end %>
+        </p>
+        <p>
+        Registerd by <%= link_to artist_image_tag(event.user ,"20px"), path_to_artist(event.user.username) %> <%= link_to_artist event.user.username %> at <%= event.created_at.to_s(:db) %>
+      <% if user_signed_in? && current_user.id == event.user.id %>
+        | <%= link_to "編集", edit_event_path(event) %> | <%= link_to "削除" ,event_path(event), confirm: '本当に削除しますか？', method: :delete %>
+    <% end %>
+    </p>
+    <div class="page-header", style="margin-top: 10px"></div>
+  <% end %>
+<% else %>
+  <div class="span12"><p>条件に該当するイベントはありません</p></div>
+<% end %>
+  </div>
+</div>

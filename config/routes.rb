@@ -22,10 +22,12 @@ MuseumCreated::Application.routes.draw do
   #end
 
   resources :locations
+  resources :events
 
   match "/artists", :to => "artists#index"
   match "/artists/:username", :to => "artists#show"
   match "/artists/:username/works", :to => "works#index", :as => "artist_works"
+  match "/artists/:username/events", :to => "events#index", :as => "artist_events"
 
   get "/settings/profile"
   put "/settings/update"

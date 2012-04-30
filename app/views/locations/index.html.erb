@@ -2,18 +2,17 @@
 <div class="page-header">
   <h2>Local Artists<small> あなたの身近なアーティストを探してください</small></h2>
   <%= link_to "新しい活動地域を登録する", settings_locations_path if user_signed_in? %>
-<%= form_tag locations_path,class: "well form-search", method: :get do %>
-  <%= text_field_tag :search, params[:search], class: "input-xxlearge search-query", placeholder: "例: 渋谷、伊勢佐木町"%>
-  <%= submit_tag "場所からアーティストを探す", name: nil, class: "btn" %>
-<% end %>
-  <%= search_tag(params) %>
+  <%= form_tag locations_path,class: "well form-search", method: :get do %>
+    <%= text_field_tag :search, params[:search], class: "input-xxlearge search-query", placeholder: "例: 渋谷、伊勢佐木町"%>
+    <%= submit_tag "場所からアーティストを探す", name: nil, class: "btn" %>
+  <% end %>
 </div>
 <div class="row">
-  <% if @locations.present? %>
-    <div class="span12" align="center">
+  <div class="span12" align="center">
+    <% if @locations.present? %>
       <div>
-      <%= gmaps4rails(@json) %>
-    </div>
+        <%= gmaps4rails(@json) %>
+      </div>
       <%= "<h2>#{params[:search]}の近くのアーティスト</h2>".html_safe if params[:search].present? %>
       <table class="table">
         <tr>
@@ -32,6 +31,7 @@
       <div class="page-header", style="margin-top: 10px">
       </div>
     <% else %>
-      <div class="span12"><p>条件に該当する作品はありません</p></div>
+      <div class="span12"><p>条件に該当すアーティストはいません</p></div>
     <% end %>
   </div>
+</div>

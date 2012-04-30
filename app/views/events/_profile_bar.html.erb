@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="span12">
+    <h2><%= artist_image_tag(current_user, "30") %> <%= current_user.username %>のイベント登録</h2>
+    <ul class="nav nav-tabs">
+      <li><%= link_to "作品一覧", artist_events_path(:username => current_user.username) %></li>
+      <li <%= "class='active'" if current_page?(new_event_path)%>><%= link_to "新規登録", new_event_path %></li>
+      <% if @event && @event.id.present? -%>
+        <li class='active' ><%= link_to "更新", edit_event_path(@event) %></li>
+      <% end -%>
+     </ul>
+  </div>
+</div>
