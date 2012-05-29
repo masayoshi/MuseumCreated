@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  place       :string(255)
+#  address     :string(255)
+#  latitude    :float
+#  longitude   :float
+#  description :string(255)
+#  url         :string(255)
+#  fee         :string(255)
+#  start_time  :datetime
+#  end_time    :datetime
+#  user_id     :integer
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
 class Event < ActiveRecord::Base
   attr_accessible :address, :description, :end_time, :fee, :latitude, :longitude, :place, :start_time, :title, :url, :user_id
   attr_accessible :tag_list

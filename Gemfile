@@ -41,6 +41,7 @@ group :development, :test do
   gem 'spork'
   gem 'rb-fsevent'
   gem 'guard-spork'
+  gem 'guard-rspec'
   gem 'growl'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'faker'

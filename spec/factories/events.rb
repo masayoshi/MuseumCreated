@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: events
+#
+#  id          :integer         not null, primary key
+#  title       :string(255)
+#  place       :string(255)
+#  address     :string(255)
+#  latitude    :float
+#  longitude   :float
+#  description :string(255)
+#  url         :string(255)
+#  fee         :string(255)
+#  start_time  :datetime
+#  end_time    :datetime
+#  user_id     :integer
+#  created_at  :datetime        not null
+#  updated_at  :datetime        not null
+#
+
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
