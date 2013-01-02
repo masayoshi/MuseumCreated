@@ -1,7 +1,3 @@
-<% @title = "Articles" %>
-<div class="page-header">
-  <h2>Pick-Up News<small> 注目の記事を独自の視点でピックアップ</small></h2>
-</div>
 <div class="row">
   <div class="span8">
     <%= paginate @articles %>
@@ -10,6 +6,7 @@
       <%= article.summary.html_safe %>
       <hr>
     <% end %>
+    <%= paginate @articles %>
   </div>
   <div class="span4">
     <div class="well">

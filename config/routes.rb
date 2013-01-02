@@ -2,56 +2,7 @@ MuseumCreated::Application.routes.draw do
 
   resources :articles, only: [:index, :show]
   match "/news", :to => "articles#index"
-
-  #resources :projects do
-    #member do
-      #post :add_comment
-      #get :del_comment
-    #end
-  #end
-
-  # resources :feeds
-  resources :works
-  #resources :offers do
-    #collection do
-      #get :check
-    #end
-    #member do
-      #get :accept, :reject
-    #end
-  #end
-
-  resources :locations
-  resources :events
-
-  match "/artists", :to => "artists#index"
-  match "/artists/:username", :to => "artists#show"
-  match "/artists/:username/works", :to => "works#index", :as => "artist_works"
-  match "/artists/:username/events", :to => "events#index", :as => "artist_events"
-
-  get "/settings/profile"
-  put "/settings/update"
-  match "/settings/services" => "services#index"
-  match "/settings/locations" => "locations#new"
-
-  devise_for :users, :controllers => { :registrations =>'registrations' }   do
-    match "/settings/account", :to => "devise/registrations#edit"
-  end
-
-  match '/auth/:provider/callback' => 'services#create'
-  resources :services, :only => [:index, :create, :destroy]
-
-  #devise_for :users do
-  #  match "/settings/account", :to => "devise/registrations#edit"
-  #end
-
-  match "/about", :to => "pages#about"
-  match "/policy", :to => "pages#policy"
-  match "/copyright", :to => "pages#copyright"
-  match "/search", :to => "pages#search"
-  match "/help", :to => "pages#help"
-
-  root :to => "pages#home"
+  root to: "articles#index"
 
 end
 #== Route Map

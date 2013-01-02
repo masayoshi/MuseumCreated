@@ -1,13 +1,13 @@
 class User < ActiveRecord::Base
   belongs_to :genre
-  has_many :works , :dependent => :destroy
-  has_many :feeds, :dependent => :destroy
-  has_many :works , :dependent => :destroy
-  has_many :offerings, :foreign_key => "offerer_user_id", :class_name => 'Offer', :dependent => :destroy
-  has_many :offers, :foreign_key => "offered_user_id", :class_name => 'Offer'
+  has_many :works , dependent: :destroy
+  has_many :feeds, dependent: :destroy
+  has_many :works , dependent: :destroy
+  has_many :offerings, foreign_key: "offerer_user_id", class_name: 'Offer', dependent: :destroy
+  has_many :offers, foreign_key: "offered_user_id", class_name: 'Offer'
   has_and_belongs_to_many :projects
-  has_many :comments, :dependent => :destroy
-  has_many :services, :dependent => :destroy
+  has_many :comments, dependent: :destroy
+  has_many :services, dependent: :destroy
   has_many :locations, dependent: :destroy
   has_many :events, dependent: :destroy
 
@@ -18,7 +18,6 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-
   attr_accessible :username, :name, :biography, :url, :genre_id, :icon_service_name
 
   validates :username, :presence => true, :length => { :within => 3..50 }, :uniqueness => true, :format   => { :with => /\A[_a-zA-Z0-9]+\Z/ } # only A..Za..z0..9-_
@@ -79,7 +78,7 @@ class User < ActiveRecord::Base
     self.skip_confirmation!
     connect_service(omniauth)
   end
-  
+
   def connect_service(omniauth)
     omniauth['uid'] ?  uid =  omniauth['uid'] : uid = ''
     omniauth['provider'] ? provider =  omniauth['provider'] : provider = ''
@@ -88,8 +87,8 @@ class User < ActiveRecord::Base
     services.build(:provider => provider,:uid => uid,:token => token, :secret => secret)
   end
 
-  def password_required?  
-    (services.empty? || !password.blank?) && super  
+  def password_required?
+    (services.empty? || !password.blank?) && super
   end
 end
 # == Schema Information

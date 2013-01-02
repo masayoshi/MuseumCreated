@@ -5,6 +5,7 @@
   <%= stylesheet_link_tag    "application","http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/smoothness/jquery-ui.css", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "ckeditor/ckeditor.js" %>
+  <%= render 'layouts/ga' if Rails.env.production? %>
   <%= favicon_link_tag %>
   <%= csrf_meta_tags %>
 </head>

@@ -1,40 +1,4 @@
 <hr>
 <footer class="footer">
-<div class="row">
-  <div class="span6">
-    <p><strong>MuseumCreated.com &copy; 2012</strong> All Rights Reserved.</p>
-  </div>
-  <div class="span2">
-    <h3>Menus</h3>
-    <ul class="unstyled">
-      <li><%= link_to "Top", root_path %></li>
-      <li><%= link_to "Artists", artists_path %></li>
-      <li><%= link_to "Locations", locations_path %></li>
-      <li><%= link_to "Events", events_path %></li>
-      <li><%= link_to "Works", works_path %></li>
-      <li><%= link_to "Search", search_path %></li>
-    </ul>
-  </div>
-  <div class="span2">
-    <h3>About Us</h3>
-    <ul class="unstyled">
-      <li><%= link_to "What is Mu-cre?", about_path %></li>
-      <li><%= link_to "Policy", policy_path %></li>
-      <li><%= link_to "Copyright", copyright_path %></li>
-      <li><%= link_to "Contact", contact_us_path %></li>
-    </ul>
-  </div>
-  <div class="span2">
-    <h3>Account</h3>
-    <ul class="unstyled">
-      <% if user_signed_in? -%>
-        <li><%= link_to "設定", settings_profile_path %></li>
-        <li><%= link_to "ログアウト", destroy_user_session_path , :method => :delete %></li>
-      <% else -%>
-        <li><%= link_to "登録", new_user_registration_path %></li>
-        <li><%= link_to "ログイン", new_user_session_path %></li>
-      <% end %>
-    </ul>
-  </div>
-</div>
+<p><strong>MuseumCreated.com &copy; 2013</strong> All Rights Reserved.</p>
 </footer>
