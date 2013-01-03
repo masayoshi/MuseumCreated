@@ -19,5 +19,6 @@
       <p>アートに関係する話題や、アーティストに役立つ情報などをMuseumCreated.comで独自にピックアップしています</p>
     </div>
     <%= render 'shared/twitter_widget' %>
+    <%= render 'shared/ad_side' if Rails.env.production? %>
   </div>
 </div>
