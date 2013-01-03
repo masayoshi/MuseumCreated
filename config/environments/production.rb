@@ -57,7 +57,4 @@ MuseumCreated::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-
-  # Apigee Add-on
-  Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
 end
