@@ -1,9 +1,7 @@
 MuseumCreated::Application.routes.draw do
-
-  resources :articles, only: [:index, :show]
-  match "/news", :to => "articles#index"
+  resources :articles, only: [:index]
+  match "/news", to: "articles#index"
   root to: "articles#index"
-
 end
 #== Route Map
 # Generated on 26 Feb 2012 13:14

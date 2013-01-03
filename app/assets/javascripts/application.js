@@ -6,8 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui
 //= require_tree .
-//= require gmaps4rails/googlemaps.js
-//= require twitter/bootstrap
-var CKEDITOR_BASEPATH = '/assets/ckeditor/';
+// Loads all Bootstrap javascripts
+//= require bootstrap

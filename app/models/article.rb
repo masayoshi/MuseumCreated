@@ -16,10 +16,13 @@ class Article < ActiveRecord::Base
 
   MUCRE_HATENA_BOOKMARK_FEED_URL = "http://b.hatena.ne.jp/mucre/rss"
 
-  paginates_per 10
+  self.per_page = 10
 
   default_scope order: 'created_at DESC'
   scope :last_24hours, where("created_at >= ?", 1.days.ago)
+  scope :search, lambda { |keyword|
+    where 'title like :q or summary like :q', q: "%#{keyword}%"
+  }
 
   def self.fetch_hatena_bookmark
     return unless feed = Feedzirra::Feed.fetch_and_parse(MUCRE_HATENA_BOOKMARK_FEED_URL)

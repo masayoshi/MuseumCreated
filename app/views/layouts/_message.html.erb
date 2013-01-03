@@ -1,5 +1,3 @@
-<div class="row">
-  <% flash.each do |name, msg| -%>
-    <%= display_flash(name,msg)%>
-  <% end -%>
-</div>
+<% flash.each do |key, value| %>
+  <%= content_tag :div, '<a class="close" data-dismiss="alert" href="#">×</a>'.html_safe + value, class: "alert alert-#{key}" %>
+<% end %>

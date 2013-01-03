@@ -1,31 +1,20 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.2.1'
-gem 'devise'
-gem 'kaminari'
-gem 'acts-as-taggable-on'
-gem 'gravatar_image_tag'
-gem 'sanitize'
-gem 'contact_us'
 gem 'feedzirra'
-gem 'authbuttons-rails'
-gem 'omniauth'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
 gem 'twitter'
-gem 'fb_graph'
-gem 'twitter-bootstrap-rails', :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'feedzirra'
-gem 'geocoder'
-gem 'gmaps4rails'
-gem 'therubyracer'
-gem 'jquery-rails'
+gem 'bootstrap-sass'
+gem 'font-awesome-sass-rails'
+gem 'will_paginate', '~> 3.0'
+gem 'bootstrap-will_paginate'
 
 # For Heroku
 group :production do
   gem 'pg'
-  gem 'thin'
 end
+
+gem 'jquery-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

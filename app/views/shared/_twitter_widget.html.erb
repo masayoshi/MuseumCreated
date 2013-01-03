@@ -1,0 +1,31 @@
+<script src="http://widgets.twimg.com/j/2/widget.js"></script>
+<script>
+  new TWTR.Widget({
+    version: 2,
+    type: 'profile',
+    rpp: 9,
+    interval: 30000,
+    width: 'auto',
+    height: 400,
+    theme: {
+      shell: {
+        background: '#BFBFBF',
+        color: '#404040'
+      },
+      tweets: {
+        background: '#ffffff',
+        color: '#404040',
+        links: '#0069D6'
+      }
+    },
+    features: {
+      scrollbar: false,
+      loop: false,
+      live: false,
+      hashtags: true,
+      timestamp: true,
+      avatars: false,
+      behavior: 'all'
+    }
+  }).render().setUser('MuseumCreated').start();
+</script>

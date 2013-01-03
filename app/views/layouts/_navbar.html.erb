@@ -1,17 +1,17 @@
-<div class="navbar navbar-fixed-top">
-  <div class="navbar-inner">
-    <div class="container">
-      <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </a>
-      <%= link_to "MuseumCreated.com News", root_path, class: "brand" %>
-      <div class="nav-collapse">
-        <%= form_tag(artists_path, method: :get, class: "navbar-search pull-left") do %>
-          <%= search_field_tag :search_word , nil, placeholder: "Keyword", class: "search-query span3"%>
-        <% end %>
-      </div><!--/.nav-collapse -->
-    </div>
+<header class="navbar navbar-fixed-top">
+<div class="navbar-inner">
+  <div class="container">
+    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </a>
+    <%= link_to "MuseumCreated.com News", root_path, class: "brand" %>
+    <div class="nav-collapse collapse">
+      <%= form_tag(articles_path, method: :get, class: "navbar-search pull-left") do %>
+        <%= search_field_tag :search_word , nil, placeholder: "Keyword", class: "search-query span3"%>
+      <% end %>
+    </div><!--/.nav-collapse -->
   </div>
-</div> <!-- /fill -->
+</div>
+</header>

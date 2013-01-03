@@ -14,6 +14,6 @@ task :tweet_random_article => :environment do
   end
   Twitter.gateway = ENV['APIGEE_TWITTER_API_ENDPOINT']
   article = Article.random_in_a_day
-  Twitter.update(article.title + " " + article.url + " " + "http://museum-created.heroku.com/news")
+  Twitter.update(article.title + " " + article.url + " " + "http://museum-created.heroku.com/")
   puts "done."
 end

@@ -1,47 +1,22 @@
 <div class="row">
   <div class="span8">
-    <%= paginate @articles %>
-    <% @articles.each do |article| %>
-      <h3><%= link_to article.title, article.url, target: "_blank" %></h3>
-      <%= article.summary.html_safe %>
-      <hr>
+    <% if @keyword.present? %>
+      <p>
+      <strong>Keyword: </strong><span class="label"><%= @keyword %></span>
+      <strong>Results: </strong><span class="badge"><%= @articles.count %></span>
+      </p>
     <% end %>
-    <%= paginate @articles %>
+    <% if @articles.present? %>
+      <%= render @articles %>
+      <%= will_paginate @articles %>
+    <% else %>
+      <p>キーワードを含む記事はありません</p>
+    <% end %>
   </div>
   <div class="span4">
     <div class="well">
       <p>アートに関係する話題や、アーティストに役立つ情報などをMuseumCreated.comで独自にピックアップしています</p>
     </div>
-    <script src="http://widgets.twimg.com/j/2/widget.js"></script>
-    <script>
-      new TWTR.Widget({
-        version: 2,
-        type: 'profile',
-        rpp: 9,
-        interval: 30000,
-        width: 'auto',
-        height: 400,
-        theme: {
-          shell: {
-            background: '#BFBFBF',
-            color: '#404040'
-          },
-          tweets: {
-            background: '#ffffff',
-            color: '#404040',
-            links: '#0069D6'
-          }
-        },
-        features: {
-          scrollbar: false,
-          loop: false,
-          live: false,
-          hashtags: true,
-          timestamp: true,
-          avatars: false,
-          behavior: 'all'
-        }
-      }).render().setUser('MuseumCreated').start();
-    </script>
+    <%= render 'shared/twitter_widget' %>
   </div>
 </div>
