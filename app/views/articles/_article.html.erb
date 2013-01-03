@@ -1,3 +1,4 @@
 <h4><%= link_to article.title, article.url, target: "_blank" %></h4>
 <%= article.summary.html_safe %>
 <hr />
+<%= render 'shared/ad_contents' if Rails.env.production? && article_counter == 0 %>
