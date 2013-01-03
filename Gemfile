@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.2.1'
+gem 'rails', '3.2.9'
 gem 'feedzirra'
 gem 'twitter'
 gem 'feedzirra'
@@ -12,6 +12,7 @@ gem 'bootstrap-will_paginate'
 # For Heroku
 group :production do
   gem 'pg'
+  gem 'thin'
 end
 
 gem 'jquery-rails'
