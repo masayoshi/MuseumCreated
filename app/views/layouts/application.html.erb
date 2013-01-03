@@ -1,10 +1,20 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="utf-8">
     <title><%= title %></title>
-    <%= stylesheet_link_tag    "application" %>
-    <%= render 'shared/ga' if Rails.env.production? %>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="アート関連のNEWSを独自にピックアップ">
+    <meta name="author" content="masay0shi">
+    <!-- Le styles -->
+    <%= stylesheet_link_tag    "application", :media => "all" %>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!-- Le fav and touch icons -->
     <%= favicon_link_tag %>
+    <%= render 'shared/ga' if Rails.env.production? %>
     <%= csrf_meta_tags %>
   </head>
   <body>
