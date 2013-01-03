@@ -13,6 +13,7 @@ gem 'bootstrap-will_paginate'
 group :production do
   gem 'pg'
   gem 'thin'
+  gem 'therubyracer-heroku'
 end
 
 gem 'jquery-rails'
