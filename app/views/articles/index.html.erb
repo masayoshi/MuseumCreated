@@ -5,6 +5,7 @@
       <strong>Keyword: </strong><span class="label"><%= @keyword %></span>
       <strong>Results: </strong><span class="badge"><%= @articles.count %></span>
       </p>
+      <hr />
     <% end %>
     <% if @articles.present? %>
       <%= render @articles %>
