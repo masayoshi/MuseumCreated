@@ -2,12 +2,12 @@
 #
 # Table name: articles
 #
-#  id         :integer         not null, primary key
+#  id         :integer          not null, primary key
 #  title      :string(255)
 #  url        :string(255)
 #  summary    :text
-#  created_at :datetime        not null
-#  updated_at :datetime        not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 # Read about factories at https://github.com/thoughtbot/factory_girl
