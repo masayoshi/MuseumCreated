@@ -37,4 +37,5 @@ group :development, :test do
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'faker'
   gem 'factory_girl_rails'
+  gem 'taps'
 end
