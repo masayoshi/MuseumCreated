@@ -8,6 +8,7 @@ gem 'bootstrap-sass'
 gem 'font-awesome-sass-rails'
 gem 'will_paginate', '~> 3.0'
 gem 'bootstrap-will_paginate'
+gem 'fb_graph'
 
 # For Heroku
 group :production do

@@ -16,5 +16,12 @@ task :tweet_random_article => :environment do
   end
   article = Article.random_in_a_day
   Twitter.update(article.title + " " + article.url + " " + "http://museum-created.heroku.com/")
+
+  fb_page = FbGraph::User.me(ENV['FACEBOOK_PAGE_ACCESS_TOKEN'])
+  fb_page.feed!(
+    message: "ATTRACTから厳選記事をお届けします http://museum-created.heroku.com/",
+    link: article.url
+  )
+
   puts "done."
 end
