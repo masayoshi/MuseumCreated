@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 desc "This task is called by the Heroku scheduler add-on"
 
 task :update_hatebu => :environment do
