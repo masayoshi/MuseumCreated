@@ -20,7 +20,7 @@ task :tweet_random_article => :environment do
 
   fb_page = FbGraph::User.me(ENV['FACEBOOK_PAGE_ACCESS_TOKEN'])
   fb_page.feed!(
-    message: "ATTRACTから厳選記事をお届けします http://museum-created.heroku.com/",
+    message: "ATTRACTから厳選記事をお届けします http://museum-created.heroku.com/ - #{article.title}",
     link: article.url
   )
 
