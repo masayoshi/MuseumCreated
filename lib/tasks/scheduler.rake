@@ -18,11 +18,11 @@ task :tweet_random_article => :environment do
   article = Article.random_in_a_day
   Twitter.update(article.title + " " + article.url + " " + "http://museum-created.heroku.com/")
 
-  puts "debug: " + article.url
+  puts "debug: #{article.url}"
 
   fb_page = FbGraph::User.me(ENV['FACEBOOK_PAGE_ACCESS_TOKEN'])
 
-  puts "debug: " + fb_page
+  puts "debug: #{fb_page}"
 
   fb_page.feed!(
     message: "ATTRACTから厳選記事をお届けします http://museum-created.heroku.com/ - #{article.title}",
